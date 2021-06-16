@@ -1,7 +1,6 @@
 <template>
   <div class="header">
-    <div>
-      <!-- <span>账号:</span> -->
+    <div class="input">
       <el-input
         v-model="input1"
         placeholder="请输入账号"
@@ -12,10 +11,12 @@
         placeholder="请输入密码"
         class="input2"
       ></el-input>
-      <!-- <div class="Login">
-        <el-button type="primary" round class="el-button">登录</el-button>
-      </div> -->
-      <!-- <router-link to="/register">注册</router-link> -->
+      <div class="Login">
+        <el-button type="primary" round class="el-button" @click="number"
+          >登录</el-button
+        >
+      </div>
+      <router-link to="/register">注册</router-link>
     </div>
   </div>
 </template>
@@ -25,6 +26,24 @@ export default {
     return {
       input1: '',
       input2: ''
+    }
+  },
+  methods: {
+    number() {
+      var ip1 = /^[A-Z][A-Za-z0-9]{8,12}$/
+      if (ip1.test(this.input1)) {
+        console.log('账号正确')
+      } else {
+        alert('账号错误,开头大写字母8-12位')
+      }
+      this.axios
+        .get('/public/mock/login.json')
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }
@@ -38,10 +57,12 @@ export default {
   -ms-flex-pack: center;
   justify-content: center;
 }
+.input {
+  width: 250px;
+  margin-top: -50px;
+}
 .input1 {
-  display: block;
-  width: 300px;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 }
 
 .Login {
@@ -51,8 +72,9 @@ export default {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  margin-top: 50px;
 }
-/* .el-button {
+.el-button {
   width: 250px;
-} */
+}
 </style>
