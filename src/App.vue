@@ -1,32 +1,30 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div>
+    <sgin-in></sgin-in>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import Sigin from './components/Sigin.vue'
 
-#nav {
-  padding: 30px;
+export default {
+  data() {
+    return {}
+  },
+  components: {
+    sginIn: Sigin
+  },
+  created() {
+    // this.axios
+    //   .get('./mock/login.json')
+    //   .then(function(response) {
+    //     console.log(response)
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error)
+    //   })
+  }
 }
+</script>
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<style></style>
