@@ -1,32 +1,34 @@
 <template>
-  <div class="box">
-    <div class="boxBeijing">
-      <div class="signContent">
-        <div>
-          <img src="../assets/logo.png" alt="" width="153px" height="37px" />
-        </div>
-        <div class="signInput">
-          <div class="Login">
-            <router-link
-              to="/Login"
-              class="loginLink"
-              @click="routerLogin"
-              :class="{ router1 }"
-              >登录</router-link
-            >
-            <router-link
-              to="/register"
-              class="loginRegister"
-              @click="routerRegister"
-              :class="{ router2 }"
-              >注册</router-link
-            >
+  <router-link to="/Sigin">
+    <div class="box">
+      <div class="boxBeijing">
+        <div class="signContent">
+          <div>
+            <img src="../assets/logo.png" alt="" width="153px" height="37px" />
           </div>
-          <router-view class="loginView"></router-view>
+          <div class="signInput">
+            <div class="Login">
+              <router-link
+                to="/Login"
+                class="loginLink"
+                @click="routerLogin"
+                :class="{ router1 }"
+                >登录</router-link
+              >
+              <router-link
+                to="/register"
+                class="loginRegister"
+                @click="routerRegister"
+                :class="{ router2 }"
+                >注册</router-link
+              >
+            </div>
+            <router-view class="loginView"></router-view>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 <script>
 export default {
