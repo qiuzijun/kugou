@@ -1,13 +1,26 @@
 <template>
-  <div class="Home">哈哈哈</div>
+  <div>
+    <Header></Header>
+    <headerForm></headerForm>
+    <Rubo></Rubo>
+    <footerGedan></footerGedan>
+  </div>
 </template>
 <script>
-export default {}
-</script>
-<style>
-.Home {
-  width: 100%;
-  height: 940px;
-  background-color: blue;
+import Header from './components/Header/Header.vue'
+import headerForm from './components/headerForm/headerFrom.vue'
+import Rubo from './components/runbo/rubo.vue'
+import footerGedan from './components/footerGedan/footerGedan.vue'
+export default {
+  data() {
+    return {}
+  },
+  components: {
+    Header: Header,
+    headerForm: headerForm,
+    Rubo: Rubo,
+    footerGedan: footerGedan
+  }
 }
-</style>
+</script>
+<style></style>
