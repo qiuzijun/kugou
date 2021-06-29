@@ -14,10 +14,26 @@
       </div>
       <div class="homeUl">
         <ul>
-          <li v-for="item in list" :key="item.id">{{ item.name }}</li>
+          <li
+            v-for="item in list"
+            :key="item.id"
+            @mouseover="ColorOver(item.id)"
+            @mouseout="ColorOut()"
+            :class="{ Color: isColor == item.id }"
+          >
+            {{ item.name }}
+          </li>
         </ul>
       </div>
-      <div class="Login1" @click="Login1">登录</div>
+      <div
+        class="Login1"
+        @click="Login1"
+        @mouseover="borRover()"
+        @mouseout="borRout()"
+        :class="{ borR: isborR == 1 }"
+      >
+        登录
+      </div>
     </div>
   </div>
 </template>
@@ -27,10 +43,12 @@ export default {
     return {
       list: [
         { id: 0, name: '客服中心' },
-        { id: 0, name: '招贤纳士' },
-        { id: 0, name: '会员中心' },
-        { id: 0, name: '商务合作' }
-      ]
+        { id: 1, name: '招贤纳士' },
+        { id: 2, name: '会员中心' },
+        { id: 3, name: '商务合作' }
+      ],
+      isColor: -1,
+      isborR: 0
     }
   },
   methods: {
@@ -38,6 +56,18 @@ export default {
       this.$router.push({
         path: '/Login'
       })
+    },
+    ColorOver(index) {
+      this.isColor = index
+    },
+    ColorOut() {
+      this.isColor = -1
+    },
+    borRover() {
+      this.isborR = 1
+    },
+    borRout() {
+      this.isborR = 0
     }
   }
 }
@@ -95,5 +125,11 @@ export default {
   margin-top: 25px;
   margin-right: 20px;
   cursor: pointer;
+}
+.homeNr > .homeUl > ul > .Color {
+  color: #0c8ed9;
+}
+.homeNr > .borR {
+  box-shadow: 0px 0px 4px 1px #ccc;
 }
 </style>

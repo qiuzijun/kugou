@@ -8,6 +8,7 @@
             :key="item.id"
             @mouseover="listover(item.id)"
             @mouseout="listout"
+            @click="bangdan(item.id)"
             :class="{ backColor: item.id == current }"
           >
             {{ item.name }}
@@ -129,6 +130,31 @@ export default {
           break
         case (index = 5):
           this.list2[5].img = require('/src/assets/' + 10 + '.png')
+          break
+
+        default:
+          break
+      }
+    },
+    bangdan(index) {
+      switch (index) {
+        case (index = 0):
+          this.$router.push({
+            path: '/Home'
+          })
+          break
+        case (index = 1):
+          this.$router.push({
+            path: '/bangdan'
+          })
+          break
+        case (index = 2):
+          break
+        case (index = 3):
+          break
+        case (index = 4):
+          break
+        case (index = 5):
           break
 
         default:

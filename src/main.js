@@ -6,9 +6,10 @@ import axios from 'axios'
 import './plugins/element.js'
 
 
-
-Vue.config.productionTip = false
-Vue.prototype.axios = axios;
+Vue.config.silent = true
+Vue.config.productionTip = true
+Vue.prototype.axios = axios
+// axios.defaults.baseURL = '/api'
 
 new Vue({
   router,
