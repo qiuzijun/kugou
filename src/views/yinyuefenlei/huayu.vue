@@ -1,6 +1,10 @@
 <template>
   <div class="huayu">
-    华语
+    <ul>
+      <li v-for="item in huayuGeDan" :key="item.id">
+        {{ item.name }}
+      </li>
+    </ul>
   </div>
 </template>
 <script>
@@ -8,97 +12,33 @@ export default {
   data() {
     return {
       huayuGeDan: [],
-      huayuID: [],
+      huayuID: [{ id: 0, name: '哈哈' }],
       huayuGeming: []
     }
   },
-  created() {
-    this.axios
-      .get('http://localhost:3000/top/playlist?cat=华语&order=hot')
-      .then(request => {
-        console.log(request.data.playlists)
-        for (let i = 0; i < request.data.playlists.length; i++) {
-          console.log(request.data.playlists[i].id)
-          this.huayuGeDan.push(request.data.playlists[i].id)
-        }
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    console.log(this.huayuGeDan[0])
-
-    // console.log(this.huayuGeDan)
-    // for (var j = 0; j < this.huayuGeDan.length; j++) {
-    //   console.log(this.huayuGeDan[j])
-    // }
-    this.axios
-      .get('http://localhost:3000/playlist/detail?id=2900343697')
-      .then(request => {
-        console.log(request.data.privileges)
-        var huayuID = request.data.privileges
-        for (let i = 0; i < huayuID.length; i++) {
-          // this.huayuID.push(huayuID[i].id)
-          console.log(huayuID[i].id)
-          this.axios
-            .get('http://localhost:3000/song/detail?ids=' + huayuID[i].id)
-            .then(request => {
-              console.log(request.data.songs[0].name)
-              this.huayuGeming.push(request.data.songs[0].name)
-            })
-            .catch(error => {
-              console.log(error)
-            })
-        }
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    console.log(this.huayuGeming[0])
-
-    // this.axios
-    //   .get('http://localhost:3000/playlist/detail?id=5172410111')
-    //   .then(request => {
-    //     console.log(request.data.privileges)
-    //     var huayuID = request.data.privileges
-    //     for (let i = 0; i < huayuID.length; i++) {
-    //       console.log(huayuID[i].id)
-    //       this.huayuID.push(huayuID[i].id)
-    //     }
-    //   })
-    //   .catch(error => {
-    //     console.log(error)
-    //   })
-
-    // this.axios
-    //   .get('http://localhost:3000/playlist/detail?id=6703233707')
-    //   .then(request => {
-    //     console.log(request.data.privileges)
-    //     var huayuID = request.data.privileges
-    //     for (let i = 0; i < 4; i++) {
-    //       console.log(huayuID[i].id)
-    //       this.huayuID.push(huayuID[i].id)
-    //     }
-    //   })
-    //   .catch(error => {
-    //     console.log(error)
-    //   })
-    // console.log(this.huayuID)
-    // this.axios
-    //   .get('http://localhost:3000/playlist/detail?id=6703233707')
-    //   .then(request => {
-    //     console.log(request.data.privileges)
-    //   })
-    //   .catch(error => {
-    //     console.log(error)
-    //   })
-    // this.axios
-    //   .get('http://localhost:3000/song/url?id=1855149638')
-    //   .then(request => {
-    //     console.log(request.data.data[0].url)
-    //   })
-    //   .catch(error => {
-    //     console.log(error)
-    //   })
+  async created() {
+    let result = await this.axios.get(
+      'http://localhost:3000/top/playlist?cat=华语&order=hot'
+    ) // console.log(request.data.playlists) // 遍历出歌单id
+    for (let i = 0; i < 3; i++) {
+      // 用遍历出的id请求歌曲id
+      let res = await this.axios.get(
+        'http://localhost:3000/playlist/detail?id=' +
+          result.data.playlists[i].id
+      )
+      var huayuID = res.data.privileges
+      for (let i = 0; i < huayuID.length; i++) {
+        // console.log(huayuID[i].id)
+        // 用歌曲id请求歌曲信息
+        let detailRes = await this.axios.get(
+          'http://localhost:3000/song/detail?ids=' + huayuID[i].id
+        )
+        // console.log(detailRes)
+        // 请求出的歌曲信息push进husyuGeDan数组
+        this.huayuGeDan.push(detailRes.data.songs[0])
+      }
+    } // 将husyuGeDan赋值给huayuGeDan数组
+    console.log(this.huayuGeDan)
   }
 }
 </script>
@@ -107,5 +47,8 @@ export default {
   width: 625px;
   height: 318px;
   background-color: orange;
+}
+.huayu li {
+  color: red;
 }
 </style>
