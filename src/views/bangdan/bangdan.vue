@@ -12,9 +12,9 @@ export default {
   },
   created() {
     this.axios
-      .get('http://localhost:3000/song/url?id=391566')
+      .get('http://localhost:3000/top/playlist')
       .then(require => {
-        console.log(require.data.data[0].url)
+        console.log(require)
       })
       .catch(error => {
         console.log(error)

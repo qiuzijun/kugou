@@ -176,7 +176,7 @@ export default {
   },
   async beforeCreate() {
     let result = await this.axios.get(
-      'http://localhost:3000/top/playlist?cat=华语&order=hot'
+      'http://localhost:3000/top/playlist?cat=流行&order=hot'
     ) // console.log(request.data.playlists) // 遍历出歌单id
     for (let i = 0; i < 3; i++) {
       // 用遍历出的id请求歌曲id

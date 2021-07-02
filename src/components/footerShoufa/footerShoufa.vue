@@ -27,7 +27,7 @@
         <div class="footerShoufaTopLBot">
           <huayu v-show="ShowFl == 0"></huayu>
           <oumei v-show="ShowFl == 1"></oumei>
-          <hangou v-show="ShowFl == 2"></hangou>
+          <liuxing v-show="ShowFl == 2"></liuxing>
           <riben v-show="ShowFl == 3"></riben>
         </div>
       </div>
@@ -42,8 +42,18 @@
             backgroundImage:
               'url(' + require('@/assets/20210612221811813300.png') + ')'
           }"
+          @mouseover="cYimgovr1"
+          @mouseout="cYimgovr2"
         >
-          <img :src="imgUrl[1].img" alt="" width="40px" height="40px" />
+          <img
+            :src="imgUrl[1].img"
+            alt=""
+            width="40px"
+            height="40px"
+            v-show="cYimg1"
+            @mouseover="cYimgH1"
+            @mouseout="cYimgH2"
+          />
           <div class="footerShoufaTopRContentBot">
             <p>我不在是从前</p>
             <p>陈雅森</p>
@@ -57,9 +67,19 @@
                 'url(' + require('@/assets/20210611161859875812.png') + ')',
               backgroundRepeat: 'no-repeat'
             }"
+            @mouseover="cYimgovr3"
+            @mouseout="cYimgovr4"
           >
             <p>Shockwave</p>
-            <img :src="imgUrl[1].img" alt="" width="40px" height="40px" />
+            <img
+              :src="imgUrl[1].img"
+              alt=""
+              width="40px"
+              height="40px"
+              v-show="cYimg2"
+              @mouseover="cYimgH3"
+              @mouseout="cYimgH4"
+            />
             <p>Marshmello</p>
           </div>
           <div
@@ -69,9 +89,19 @@
                 'url(' + require('@/assets/20210611094651504326.png') + ')',
               backgroundRepeat: 'no-repeat'
             }"
+            @mouseover="cYimgovr5"
+            @mouseout="cYimgovr6"
           >
             <p>斗罗大陆-凤凰火</p>
-            <img :src="imgUrl[1].img" alt="" width="40px" height="40px" />
+            <img
+              :src="imgUrl[1].img"
+              alt=""
+              width="40px"
+              height="40px"
+              v-show="cYimg3"
+              @mouseover="cYimgH5"
+              @mouseout="cYimgH6"
+            />
             <p>胡夏</p>
           </div>
         </div>
@@ -92,7 +122,7 @@
 <script>
 import huayu from '/src/views/yinyuefenlei/huayu'
 import oumei from '/src/views/yinyuefenlei/oumei'
-import hangou from '/src/views/yinyuefenlei/hangou'
+import liuxing from '/src/views/yinyuefenlei/liuxing'
 import riben from '/src/views/yinyuefenlei/riben'
 export default {
   data() {
@@ -100,10 +130,13 @@ export default {
       ShowFl: 0,
       msg: 0,
       isPColor: false,
+      cYimg1: false,
+      cYimg2: false,
+      cYimg3: false,
       listShoufa: [
         { id: 0, name: '华语' },
         { id: 1, name: '欧美' },
-        { id: 2, name: '韩国' },
+        { id: 2, name: '流行' },
         { id: 3, name: '日本' }
       ],
       imgUrl: [
@@ -116,7 +149,7 @@ export default {
   components: {
     huayu: huayu,
     oumei: oumei,
-    hangou: hangou,
+    liuxing: liuxing,
     riben: riben
   },
   methods: {
@@ -131,6 +164,42 @@ export default {
     bofan2() {
       this.isPColor = false
       this.imgUrl[0].img = require('/src/assets/bofan1.png')
+    },
+    cYimgovr1() {
+      this.cYimg1 = true
+    },
+    cYimgovr2() {
+      this.cYimg1 = false
+    },
+    cYimgovr3() {
+      this.cYimg2 = true
+    },
+    cYimgovr4() {
+      this.cYimg2 = false
+    },
+    cYimgovr5() {
+      this.cYimg3 = true
+    },
+    cYimgovr6() {
+      this.cYimg3 = false
+    },
+    cYimgH1() {
+      this.imgUrl[1].img = require('/src/assets/bofang2.png')
+    },
+    cYimgH2() {
+      this.imgUrl[1].img = require('/src/assets/bofang1.png')
+    },
+    cYimgH3() {
+      this.imgUrl[1].img = require('/src/assets/bofang2.png')
+    },
+    cYimgH4() {
+      this.imgUrl[1].img = require('/src/assets/bofang1.png')
+    },
+    cYimgH5() {
+      this.imgUrl[1].img = require('/src/assets/bofang2.png')
+    },
+    cYimgH6() {
+      this.imgUrl[1].img = require('/src/assets/bofang1.png')
     }
   }
 }
@@ -252,7 +321,7 @@ export default {
   width: 320px;
   height: 176px;
   cursor: pointer;
-  /* background-color: orchid; */
+  /* background-color: rgba(0, 0, 0, 0.5); */
 }
 .footerShoufaTop > .footerShoufaTopR > .footerShoufaTopRContent > img {
   margin-top: 20%;
