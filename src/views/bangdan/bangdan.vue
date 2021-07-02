@@ -11,15 +11,14 @@ export default {
     }
   },
   created() {
-    // this.axios
-    //   .get('http://localhost:3000/song/url?id=33894312')
-    //   .then(require => {
-    //     console.log(require)
-    //   })
-    //   .catch(error => {
-    //     console.log(error)
-    //   })
-    console.log(this.msg[0])
+    this.axios
+      .get('http://localhost:3000/song/url?id=391566')
+      .then(require => {
+        console.log(require.data.data[0].url)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 }
 </script>

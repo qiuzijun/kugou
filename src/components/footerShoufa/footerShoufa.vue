@@ -9,11 +9,17 @@
               v-for="item in listShoufa"
               :key="item.id"
               @mouseover="Shoufa(item.id)"
+              :class="{ Color: msg == item.id }"
             >
               {{ item.name }}
             </li>
           </ul>
-          <div class="ShoufaBofan">
+          <div
+            class="ShoufaBofan"
+            :class="{ pColor: isPColor }"
+            @mouseover="bofan1"
+            @mouseout="bofan2"
+          >
             <img :src="imgUrl[0].img" alt="" />
             <p>全部播放</p>
           </div>
@@ -92,6 +98,8 @@ export default {
   data() {
     return {
       ShowFl: 0,
+      msg: 0,
+      isPColor: false,
       listShoufa: [
         { id: 0, name: '华语' },
         { id: 1, name: '欧美' },
@@ -114,6 +122,15 @@ export default {
   methods: {
     Shoufa(index) {
       this.ShowFl = index
+      this.msg = index
+    },
+    bofan1() {
+      this.isPColor = true
+      this.imgUrl[0].img = require('/src/assets/bofan2.png')
+    },
+    bofan2() {
+      this.isPColor = false
+      this.imgUrl[0].img = require('/src/assets/bofan1.png')
     }
   }
 }
@@ -171,6 +188,9 @@ export default {
   font-size: 14px;
   cursor: pointer;
 }
+.footerShoufaTop > .footerShoufaTopL > .footerShoufaTopLTop > ul > .Color {
+  color: #0c8ed9;
+}
 .footerShoufaTop > .footerShoufaTopL > .footerShoufaTopLTop > .ShoufaBofan {
   width: 91px;
   height: 31px;
@@ -182,6 +202,9 @@ export default {
   align-items: center;
   float: right;
   cursor: pointer;
+}
+.footerShoufaTop > .footerShoufaTopL > .footerShoufaTopLTop > .pColor {
+  border: 1px solid #0c8ed9;
 }
 .footerShoufaTop
   > .footerShoufaTopL
