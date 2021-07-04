@@ -4,7 +4,8 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import './plugins/element.js'
-
+import animated from 'animate.css'
+Vue.use(animated)
 
 Vue.config.silent = true
 Vue.config.productionTip = true

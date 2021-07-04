@@ -174,7 +174,7 @@ export default {
     // let imgR = document.querySelector('imgR')
     // console.log(this.$refs.name)
   },
-  async beforeCreate() {
+  async beforeMount() {
     let result = await this.axios.get(
       'http://localhost:3000/top/playlist?cat=华语&order=hot'
     ) // console.log(request.data.playlists) // 遍历出歌单id
@@ -206,7 +206,8 @@ export default {
       }
     } // 将husyuGeDan赋值给huayuGeDan数组
     // console.log(this.huayuGeDan)
-    // console.log(this.huayuGeDanTime)
+    console.log(this.huayuGeDanTime)
+    this.$store.commit('setData', 1855148340)
   }
 }
 </script>

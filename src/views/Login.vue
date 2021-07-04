@@ -36,7 +36,7 @@
                 show-password
               ></el-input>
               <div class="Login">
-                <div class="el-button" @click="Home">登录</div>
+                <a><div class="el-button" @click="Home">登录</div></a>
               </div>
               <router-link to="/register">注册</router-link>
             </div>
@@ -137,9 +137,9 @@ export default {
   justify-content: center;
   font-size: 16px;
 }
-.Login > a {
+/* .Login > a {
   color: black;
-}
+} */
 .loginLink {
   padding: 10px;
   margin-right: 100px;

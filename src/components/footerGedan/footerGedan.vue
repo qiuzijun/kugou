@@ -239,58 +239,86 @@ export default {
   background-color: black;
   opacity: 0.8;
 }
+
 .gedanLeftBot2L > .gedanBg2 {
   background-color: black;
   opacity: 0.8;
 }
+
 .gedanLeftBot2L > .gedanBg3 {
   background-color: black;
   opacity: 0.8;
 }
+
 .gedanLeftBot2R > .gedanBg4 {
   background-color: black;
   opacity: 0.8;
 }
+
 .gedanLeftBot2R > .gedanBg5 {
   background-color: black;
   opacity: 0.8;
 }
+
 .footerGedan {
   width: 1000px;
   height: 520px;
   /* background-color: pink; */
   margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
+
 .footerGedan > .gedanTop {
   width: 1000px;
   height: 385px;
   margin-top: 30px;
   /* background-color: red; */
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
+
 .footerGedan > .gedanTop > .gedanLeft {
   width: 653px;
   height: 385px;
   /* background-color: burlywood; */
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
+
 .footerGedan > .gedanTop > .gedanLeft > .gedanLeftTop {
   width: 653px;
   height: 50px;
   /* background-color: pink; */
 }
+
 .footerGedan > .gedanTop > .gedanLeft > .gedanLeftTop a {
   color: #ccc;
   font-size: 12px;
   margin-top: 15px;
   float: right;
 }
+
 .footerGedan > .gedanTop > .gedanLeft > .gedanLeftTop h3 {
   color: #555;
   font-size: 30px;
@@ -298,32 +326,45 @@ export default {
   float: left;
   cursor: pointer;
 }
+
 .footerGedan > .gedanTop > .gedanLeft > .gedanLeftTop h3 b {
   color: #0c8ed9;
   font-weight: 300;
   cursor: pointer;
 }
+
 .footerGedan > .gedanTop > .gedanLeft > .gedanLeftBot {
   width: 653px;
   height: 325px;
   /* background-color: red; */
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   cursor: pointer;
 }
+
 .footerGedan > .gedanTop > .gedanLeft > .gedanLeftBot > .gedanLeftBot1 {
   width: 325px;
   height: 325px;
 
   /* background-color: pink; */
 }
+
 .footerGedan > .gedanTop > .gedanLeft > .gedanLeftBot > .gedanLeftBot2 {
   width: 325px;
   height: 325px;
   /* background-color: olivedrab; */
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
+
 .footerGedan
   > .gedanTop
   > .gedanLeft
@@ -333,10 +374,18 @@ export default {
   width: 160px;
   height: 325px;
   /* background-color: darkcyan; */
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
+
 .footerGedan
   > .gedanTop
   > .gedanLeft
@@ -348,6 +397,7 @@ export default {
   height: 160px;
   /* background-color: pink; */
 }
+
 .footerGedan
   > .gedanTop
   > .gedanLeft
@@ -359,6 +409,7 @@ export default {
   height: 160px;
   /* background-color: pink; */
 }
+
 .footerGedan
   > .gedanTop
   > .gedanLeft
@@ -368,10 +419,18 @@ export default {
   width: 160px;
   height: 325px;
   /* background-color: darkcyan; */
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
+
 .footerGedan
   > .gedanTop
   > .gedanLeft
@@ -383,6 +442,7 @@ export default {
   height: 160px;
   /* background-color: pink; */
 }
+
 .footerGedan
   > .gedanTop
   > .gedanLeft
@@ -394,14 +454,23 @@ export default {
   height: 160px;
   /* background-color: pink; */
 }
+
 .footerGedan > .gedanTop > .gedanRight {
   width: 321px;
   height: 385px;
   /* background-color: orchid; */
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
+
 .footerGedan > .gedanBot {
   width: 1000px;
   height: 80px;
@@ -412,6 +481,7 @@ export default {
   width: 321px;
   height: 90px;
 }
+
 .gedanRight2,
 .gedanRight3,
 .gedanRight4 {
@@ -420,12 +490,14 @@ export default {
   cursor: pointer;
   background-color: #f6f6f6;
 }
+
 .gedanRight1 a {
   color: #ccc;
   font-size: 12px;
   margin-top: 15px;
   float: right;
 }
+
 .gedanRight1 h3 {
   cursor: pointer;
   color: #555;
@@ -433,65 +505,79 @@ export default {
   font-weight: 300;
   float: left;
 }
+
 .gedanRight1 h3 b {
   color: #0c8ed9;
   font-weight: 300;
 }
+
 .gedanRight2 > ol {
   width: 200px;
   height: 50px;
   margin-top: 10px;
   margin-left: 50px;
 }
+
 .gedanRight2 > ol li {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 15px;
 }
+
 .gedanRight2 > img:first-child {
   float: left;
 }
+
 .gedanRight2 > img:last-child {
   margin-top: -35px;
   float: right;
 }
+
 .gedanRight3 > ol {
   width: 200px;
   height: 50px;
   margin-top: 10px;
 }
+
 .gedanRight3 > ol li {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 15px;
 }
+
 .gedanRight3 > img:first-child {
   float: left;
 }
+
 .gedanRight3 > img:last-child {
   margin-top: -35px;
   float: right;
 }
+
 .gedanRight4 > ol {
   width: 200px;
   height: 50px;
   margin-top: 10px;
 }
+
 .gedanRight4 > ol li {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 15px;
 }
+
 .gedanRight4 > img:first-child {
   float: left;
 }
+
 .gedanRight4 > img:last-child {
   margin-top: -35px;
   float: right;
 }
+
 #gedanLeftBot1B {
   width: 325px;
   height: 50px;
@@ -499,23 +585,28 @@ export default {
   opacity: 0.5;
   margin-top: -54px;
 }
+
 #gedanLeftBot1B > img {
   float: right;
   margin-top: -45px;
   margin-right: 10px;
 }
+
 #gedanLeftBot1B > .gedanLeftBot1B {
   width: 270px;
   height: 50px;
 }
+
 #gedanLeftBot1B > .gedanLeftBot1B > p:first-child {
   color: white;
 }
+
 #gedanLeftBot1B > .gedanLeftBot1B > p:last-child {
   color: #ccc;
   float: left;
   margin-left: 20px;
 }
+
 #gedanLeftBot1BT {
   width: 160px;
   height: 50px;
@@ -523,15 +614,18 @@ export default {
   opacity: 0.5;
   margin-top: -54px;
 }
+
 #gedanLeftBot1BT > img {
   float: right;
   margin-top: -45px;
   margin-right: 10px;
 }
+
 #gedanLeftBot1BT > .gedanLeftBot1BT {
   width: 160px;
   height: 50px;
 }
+
 #gedanLeftBot1BT > .gedanLeftBot1BT > p:first-child {
   color: white;
   white-space: nowrap;
@@ -539,6 +633,7 @@ export default {
   text-overflow: ellipsis;
   font-size: 14px;
 }
+
 #gedanLeftBot1BT > .gedanLeftBot1BT > p:last-child {
   white-space: nowrap;
   overflow: hidden;

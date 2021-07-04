@@ -81,7 +81,11 @@ export default {
   /* background-color: red; */
 }
 .homeNr {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 .homeNr > .homeImg > img {
@@ -130,6 +134,7 @@ export default {
   color: #0c8ed9;
 }
 .homeNr > .borR {
+  -webkit-box-shadow: 0px 0px 4px 1px #ccc;
   box-shadow: 0px 0px 4px 1px #ccc;
 }
 </style>

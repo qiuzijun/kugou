@@ -209,30 +209,52 @@ export default {
   width: 1000px;
   height: 520px;
   margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
+
 .footerShoufaTop {
   width: 1000px;
   height: 368px;
   margin-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
+
 .footerShoufaTop > .footerShoufaTopL {
   width: 625px;
   height: 368px;
   /* background-color: red; */
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
+
 .footerShoufaTop > .footerShoufaTopL > .footerShoufaTopLTop {
   width: 625px;
   height: 50px;
   /* background-color: pink; */
 }
+
 .footerShoufaTop > .footerShoufaTopL > .footerShoufaTopLTop > h3 {
   color: #555;
   font-size: 30px;
@@ -240,41 +262,54 @@ export default {
   float: left;
   cursor: pointer;
 }
+
 .footerShoufaTop > .footerShoufaTopL > .footerShoufaTopLTop > h3 b {
   color: #0c8ed9;
   font-weight: 300;
   cursor: pointer;
 }
+
 .footerShoufaTop > .footerShoufaTopL > .footerShoufaTopLTop > ul {
   width: 200px;
   height: 20px;
   margin-left: 150px;
   margin-top: 12px;
 }
+
 .footerShoufaTop > .footerShoufaTopL > .footerShoufaTopLTop > ul li {
   float: left;
   margin-right: 20px;
   font-size: 14px;
   cursor: pointer;
 }
+
 .footerShoufaTop > .footerShoufaTopL > .footerShoufaTopLTop > ul > .Color {
   color: #0c8ed9;
 }
+
 .footerShoufaTop > .footerShoufaTopL > .footerShoufaTopLTop > .ShoufaBofan {
   width: 91px;
   height: 31px;
   border: 1px solid #dbdbdb;
   margin-top: -28px;
   font-size: 13px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   float: right;
   cursor: pointer;
 }
+
 .footerShoufaTop > .footerShoufaTopL > .footerShoufaTopLTop > .pColor {
   border: 1px solid #0c8ed9;
 }
+
 .footerShoufaTop
   > .footerShoufaTopL
   > .footerShoufaTopLTop
@@ -282,21 +317,32 @@ export default {
   > img {
   margin-left: 10px;
 }
+
 .footerShoufaTop > .footerShoufaTopL > .footerShoufaTopLTop > .ShoufaBofan > p {
   margin-right: 10px;
 }
+
 .footerShoufaTop > .footerShoufaTopR {
   width: 320px;
   height: 368px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
+
 .footerShoufaTop > .footerShoufaTopR > .footerShoufaTopRTop {
   width: 320px;
   height: 50px;
   /* background-color: orchid; */
 }
+
 .footerShoufaTop > .footerShoufaTopR > .footerShoufaTopRTop > h3 {
   color: #555;
   font-size: 35px;
@@ -304,6 +350,7 @@ export default {
   float: left;
   cursor: pointer;
 }
+
 .footerShoufaTop > .footerShoufaTopR > .footerShoufaTopRTop > h3 b {
   color: #0c8ed9;
   font-weight: 300;
@@ -311,23 +358,27 @@ export default {
   float: left;
   cursor: pointer;
 }
+
 .footerShoufaTop > .footerShoufaTopR > .footerShoufaTopRTop > a {
   color: #ccc;
   font-size: 12px;
   margin-top: 15px;
   float: right;
 }
+
 .footerShoufaTop > .footerShoufaTopR > .footerShoufaTopRContent {
   width: 320px;
   height: 176px;
   cursor: pointer;
   /* background-color: rgba(0, 0, 0, 0.5); */
 }
+
 .footerShoufaTop > .footerShoufaTopR > .footerShoufaTopRContent > img {
   margin-top: 20%;
   margin-left: 40%;
   float: left;
 }
+
 .footerShoufaTop
   > .footerShoufaTopR
   > .footerShoufaTopRContent
@@ -337,6 +388,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   margin-top: 126px;
 }
+
 .footerShoufaTop
   > .footerShoufaTopR
   > .footerShoufaTopRContent
@@ -349,6 +401,7 @@ export default {
   margin-top: 20px;
   margin-left: 20px;
 }
+
 .footerShoufaTop
   > .footerShoufaTopR
   > .footerShoufaTopRContent
@@ -361,13 +414,19 @@ export default {
   margin-top: 5px;
   margin-left: 20px;
 }
+
 .footerShoufaTop > .footerShoufaTopR > .footerShoufaTopRBot {
   width: 320px;
   height: 132px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   /* background-color: orchid; */
 }
+
 .footerShoufaTop
   > .footerShoufaTopR
   > .footerShoufaTopRBot
@@ -377,6 +436,7 @@ export default {
   cursor: pointer;
   /* background-color: orchid; */
 }
+
 .footerShoufaTop
   > .footerShoufaTopR
   > .footerShoufaTopRBot
@@ -386,6 +446,7 @@ export default {
   margin-left: 40%;
   float: left;
 }
+
 .footerShoufaTop
   > .footerShoufaTopR
   > .footerShoufaTopRBot
@@ -395,6 +456,7 @@ export default {
   width: 100px;
   margin-top: 95px;
 }
+
 .footerShoufaTop
   > .footerShoufaTopR
   > .footerShoufaTopRBot
@@ -404,6 +466,7 @@ export default {
   width: 100px;
   font-size: 15px;
 }
+
 .footerShoufaTop
   > .footerShoufaTopR
   > .footerShoufaTopRBot
@@ -413,6 +476,7 @@ export default {
   cursor: pointer;
   /* background-color: orchid; */
 }
+
 .footerShoufaTop
   > .footerShoufaTopR
   > .footerShoufaTopRBot
@@ -422,6 +486,7 @@ export default {
   margin-left: 40%;
   float: left;
 }
+
 .footerShoufaTop
   > .footerShoufaTopR
   > .footerShoufaTopRBot
@@ -432,6 +497,7 @@ export default {
   margin-top: 90px;
   margin-left: -20px;
 }
+
 .footerShoufaTop
   > .footerShoufaTopR
   > .footerShoufaTopRBot
@@ -441,6 +507,7 @@ export default {
   width: 80px;
   margin-left: -20px;
 }
+
 .footerShoufaBot {
   width: 1000px;
   height: 80px;

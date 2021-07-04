@@ -1,70 +1,183 @@
-.box {
-    width: 100%;
-    height: 100%;
-}
-
-.boxBeijing {
+.huayu {
+    width: 625px;
+    height: 318px;
     overflow: hidden;
-    background-image: url('../assets/sign_bg.db29b0fb.png');
-    height: 936px;
+    /* background-color: orange; */
 }
 
-.signContent {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    margin-top: 100px;
+.huayuGeDan {
+    width: 1875px;
+    height: 280px;
+    position: relative;
+    left: 0;
 }
 
-.signInput {
-    width: 400px;
-    height: 495px;
-    margin-top: 50px;
-    background-color: white;
-    -webkit-box-shadow: 0px 0px 5px 2px #ccc;
-    box-shadow: 0px 0px 5px 2px #ccc;
+.huayuGeDan>li {
+    float: left;
 }
 
-.Login {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    font-size: 16px;
+.huayu>.huayuGeDan>.GeDan1>.huayuGeDan1 {
+    width: 625px;
+    height: 280px;
+    padding-top: 10px;
+    /* background-color: pink; */
 }
 
-.Login>a {
-    color: black;
+.huayu>.huayuGeDan>.GeDan1>.huayuGeDan1>li {
+    font: 13px/1.5 \5fae\8f6f\96c5\9ed1, simsun, sans-serif;
+    text-align: left;
+    margin-left: 10px;
+    height: 35px;
+    overflow: hidden;
+    line-height: 35px;
+    /* background-color: red; */
+    cursor: pointer;
 }
 
-.loginLink {
-    padding: 10px;
-    margin-right: 100px;
+.huayu>.huayuGeDan>.GeDan1>.huayuGeDan1>.liBckCor {
+    font: 13px/1.5 \5fae\8f6f\96c5\9ed1, simsun, sans-serif;
+    text-align: left;
+    margin-left: 10px;
+    height: 35px;
+    overflow: hidden;
+    line-height: 35px;
+    background-color: #f5f8fb;
+    color: #0c8ed9;
+    cursor: pointer;
 }
 
-.loginRegister {
-    padding: 10px;
+.huayu>.huayuGeDan>.GeDan1>.huayuGeDan1>li>img {
+    margin-top: 10px;
+    margin-right: 60px;
+    float: right;
 }
 
-.router1 {
-    font-weight: bold;
-    border-bottom: 2px solid blue;
+.huayu>.huayuGeDan>.GeDan1>.Time {
+    width: 45px;
+    height: 280px;
+    margin-top: -290px;
+    padding-top: 10px;
+    float: right;
 }
 
-.router2 {
-    font-weight: bold;
-    border-bottom: 2px solid blue;
+.huayu>.huayuGeDan>.GeDan1>.Time>li {
+    font: 13px/1.5 \5fae\8f6f\96c5\9ed1, simsun, sans-serif;
+    height: 35px;
+    line-height: 35px;
+    cursor: pointer;
 }
 
-.loginView {
-    margin-top: 100px;
+.huayu>.huayuGeDan>.GeDan2>.huayuGeDan1 {
+    width: 625px;
+    height: 280px;
+    padding-top: 10px;
+    /* background-color: pink; */
+}
+
+.huayu>.huayuGeDan>.GeDan2>.huayuGeDan1>.liBckCor1 {
+    font: 13px/1.5 \5fae\8f6f\96c5\9ed1, simsun, sans-serif;
+    text-align: left;
+    margin-left: 10px;
+    height: 35px;
+    overflow: hidden;
+    line-height: 35px;
+    background-color: #f5f8fb;
+    color: #0c8ed9;
+    cursor: pointer;
+}
+
+.huayu>.huayuGeDan>.GeDan2>.huayuGeDan1>li {
+    font: 13px/1.5 \5fae\8f6f\96c5\9ed1, simsun, sans-serif;
+    text-align: left;
+    margin-left: 10px;
+    height: 35px;
+    overflow: hidden;
+    line-height: 35px;
+    cursor: pointer;
+}
+
+.huayu>.huayuGeDan>.GeDan2>.huayuGeDan1>li>img {
+    margin-top: 10px;
+    margin-right: 60px;
+    float: right;
+}
+
+.huayu>.huayuGeDan>.GeDan2>.Time {
+    width: 45px;
+    height: 280px;
+    margin-top: -290px;
+    padding-top: 10px;
+    float: right;
+}
+
+.huayu>.huayuGeDan>.GeDan2>.Time>li {
+    font: 13px/1.5 \5fae\8f6f\96c5\9ed1, simsun, sans-serif;
+    height: 35px;
+    line-height: 35px;
+    cursor: pointer;
+}
+
+.huayu>.huayuGeDan>.GeDan3>.huayuGeDan1 {
+    width: 625px;
+    height: 280px;
+    padding-top: 10px;
+    /* background-color: pink; */
+}
+
+.huayu>.huayuGeDan>.GeDan3>.huayuGeDan1>.liBckCor2 {
+    font: 13px/1.5 \5fae\8f6f\96c5\9ed1, simsun, sans-serif;
+    text-align: left;
+    margin-left: 10px;
+    height: 35px;
+    overflow: hidden;
+    background-color: #f5f8fb;
+    color: #0c8ed9;
+    line-height: 35px;
+    cursor: pointer;
+}
+
+.huayu>.huayuGeDan>.GeDan3>.huayuGeDan1>li {
+    font: 13px/1.5 \5fae\8f6f\96c5\9ed1, simsun, sans-serif;
+    text-align: left;
+    margin-left: 10px;
+    height: 35px;
+    overflow: hidden;
+    line-height: 35px;
+    cursor: pointer;
+}
+
+.huayu>.huayuGeDan>.GeDan3>.huayuGeDan1>li>img {
+    margin-top: 10px;
+    margin-right: 60px;
+    float: right;
+}
+
+.huayu>.huayuGeDan>.GeDan3>.Time {
+    width: 45px;
+    height: 280px;
+    margin-top: -290px;
+    padding-top: 10px;
+    float: right;
+}
+
+.huayu>.huayuGeDan>.GeDan3>.Time>li {
+    font: 13px/1.5 \5fae\8f6f\96c5\9ed1, simsun, sans-serif;
+    height: 35px;
+    line-height: 35px;
+    cursor: pointer;
+}
+
+.huayu>.FanYe {
+    font: 13px/1.5 \5fae\8f6f\96c5\9ed1, simsun, sans-serif;
+    margin-top: 5px;
+}
+
+.huayu>.FanYe>img:first-child {
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.huayu>.FanYe>img:last-child {
+    cursor: pointer;
+    margin-left: 15px;
 }

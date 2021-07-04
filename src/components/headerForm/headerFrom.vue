@@ -3,16 +3,18 @@
     <div class="headerContent">
       <div class="headerLeft">
         <ul>
-          <li
-            v-for="item in list1"
-            :key="item.id"
-            @mouseover="listover(item.id)"
-            @mouseout="listout"
-            @click="bangdan(item.id)"
-            :class="{ backColor: item.id == current }"
-          >
-            {{ item.name }}
-          </li>
+          <a :href="url" target="_blank">
+            <li
+              v-for="item in list1"
+              :key="item.id"
+              @mouseover="listover(item.id)"
+              @mouseout="listout"
+              @click="bangdan(item.id)"
+              :class="{ backColor: item.id == current }"
+            >
+              {{ item.name }}
+            </li>
+          </a>
         </ul>
         <el-dropdown class="el-dropdown">
           <span
@@ -52,11 +54,18 @@
 export default {
   data() {
     return {
+      url: 0,
       list1: [
         { id: 0, name: '首页' },
         { id: 1, name: '榜单' },
         { id: 2, name: '下载酷狗' },
         { id: 3, name: '听歌识曲' }
+      ],
+      lsitUrl: [
+        { id: 0, name: '' },
+        { id: 1, name: 'http://localhost:8080/#/bangdan' },
+        { id: 2, name: '' },
+        { id: 3, name: '' }
       ],
       list2: [
         { id: 0, img: require('/src/assets/2.png'), name: '直播' },
@@ -74,6 +83,14 @@ export default {
   methods: {
     listover(index) {
       this.current = index
+      switch (index) {
+        case (index = 1):
+          this.url = this.lsitUrl[1].name
+          break
+
+        default:
+          break
+      }
     },
     listout() {
       this.current = -1
@@ -144,9 +161,6 @@ export default {
           })
           break
         case (index = 1):
-          this.$router.push({
-            path: '/bangdan'
-          })
           break
         case (index = 2):
           break
@@ -174,14 +188,17 @@ export default {
   width: 1000px;
   /* background-color: red; */
   margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-pack: distribute;
   justify-content: space-around;
 }
 .headerContent > .headerLeft {
   width: 500px;
   /* background-color: orange; */
 }
-.headerContent > .headerLeft > ul > li {
+.headerContent > .headerLeft > ul > a > li {
   padding: 16.5px 20px 16.5px 20px;
   float: left;
   color: white;
