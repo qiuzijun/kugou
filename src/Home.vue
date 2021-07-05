@@ -6,7 +6,6 @@
     <footerGedan></footerGedan>
     <footerShoufa></footerShoufa>
     <footerJinxuan></footerJinxuan>
-    <footerDiantai></footerDiantai>
     <footerLianjie></footerLianjie>
     <Footer class="Footer"></Footer>
     <el-backtop
@@ -37,7 +36,6 @@ export default {
     footerGedan,
     footerShoufa,
     footerJinxuan,
-    footerDiantai,
     footerLianjie,
     Footer,
     music

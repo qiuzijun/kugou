@@ -3,7 +3,9 @@
     <div class="footerDiantaiTop">
       <div class="footerDiantaiTopL">
         <div class="footerDiantaiTopLt">热门电台</div>
-        <div class="footerDiantaiTopLb"></div>
+        <div class="footerDiantaiTopLb">
+          <diantai></diantai>
+        </div>
       </div>
       <div class="footerDiantaiTopR">
         <div class="footerDiantaiTopRt"></div>
@@ -15,12 +17,16 @@
 </template>
 <script>
 import { mapState } from 'vuex'
+import diantai from '/src/views/diantai/diantai.vue'
 export default {
   data() {
     return {}
   },
   computed: {
     ...mapState(['huayu'])
+  },
+  components: {
+    diantai
   }
 }
 </script>
@@ -52,11 +58,7 @@ export default {
   height: 50px;
   background-color: springgreen;
 }
-.footerDiantaiTop > .footerDiantaiTopL > .footerDiantaiTopLb {
-  width: 625px;
-  height: 318px;
-  background-color: aqua;
-}
+
 .footerDiantaiTop > .footerDiantaiTopR {
   width: 320px;
   height: 368px;

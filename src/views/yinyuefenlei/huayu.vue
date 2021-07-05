@@ -164,7 +164,7 @@ export default {
       if (this.L >= 4) {
         this.L = 1
       }
-      console.log(this.$refs.name)
+      // console.log(this.$refs.name)
     }
   },
   mounted() {
@@ -206,7 +206,7 @@ export default {
       }
     } // 将husyuGeDan赋值给huayuGeDan数组
     // console.log(this.huayuGeDan)
-    console.log(this.huayuGeDanTime)
+    // console.log(this.huayuGeDanTime)
     this.$store.commit('setData', 1855148340)
   }
 }
