@@ -17,6 +17,7 @@
               v-show="imgBo == item.id"
               @mouseover="imgCor1"
               @mouseout="imgCor2"
+              @click="bofan1(item.id)"
             />
           </li>
         </ul>
@@ -42,6 +43,7 @@
               v-show="imgBo1 == item.id"
               @mouseover="imgCor3"
               @mouseout="imgCor4"
+              @click="bofan2(item.id)"
             />
           </li>
         </ul>
@@ -67,6 +69,7 @@
               v-show="imgBo2 == item.id"
               @mouseover="imgCor5"
               @mouseout="imgCor6"
+              @click="bofan3(item.id)"
             />
           </li>
         </ul>
@@ -164,7 +167,118 @@ export default {
       if (this.L >= 4) {
         this.L = 1
       }
-      // console.log(this.$refs.name)
+    },
+    bofan1(index) {
+      this.axios
+        .get('http://localhost:3000/song/url?id=' + index)
+        .then(require => {
+          if (require.data.data[0].url == null) {
+            alert('Vip音乐')
+          }
+          this.$store.commit('setUrl', require.data.data[0].url)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      this.axios
+        .get('http://localhost:3000/song/detail?ids=' + index)
+        .then(require => {
+          // console.log(require)
+          if (require.data.songs[0].al.picUrl == null) {
+            alert('Vip音乐')
+          }
+          let Times = require.data.songs[0].dt
+          let Seconds = Times / 1000
+          let m = parseInt(Seconds / 60)
+          let s = parseInt(Seconds - m * 60)
+          s = s < 10 ? '0' + s : s
+          let time = m + ':' + s
+
+          this.$store.commit('setImg', require.data.songs[0].al.picUrl)
+          this.$store.commit('setName', require.data.songs[0].name)
+          this.$store.commit('setTime', time)
+          this.$store.commit('sethuayu', require.data.songs[0].dt)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      // console.log(index)
+
+      // console.log(this.$store.state.huayu)
+    },
+    bofan2(index) {
+      this.axios
+        .get('http://localhost:3000/song/url?id=' + index)
+        .then(require => {
+          // console.log(require.data.data[0].url)
+          if (require.data.data[0].url == null) {
+            alert('Vip音乐')
+          }
+          this.$store.commit('setUrl', require.data.data[0].url)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      this.axios
+        .get('http://localhost:3000/song/detail?ids=' + index)
+        .then(require => {
+          // console.log(require)
+          if (require.data.songs[0].al.picUrl == null) {
+            alert('Vip音乐')
+          }
+          let Times = require.data.songs[0].dt
+          let Seconds = Times / 1000
+          let m = parseInt(Seconds / 60)
+          let s = parseInt(Seconds - m * 60)
+          s = s < 10 ? '0' + s : s
+          let time = m + ':' + s
+
+          this.$store.commit('setImg', require.data.songs[0].al.picUrl)
+          this.$store.commit('setName', require.data.songs[0].name)
+          this.$store.commit('setTime', time)
+          this.$store.commit('sethuayu', require.data.songs[0].dt)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      // console.log(index)
+    },
+    bofan3(index) {
+      this.axios
+        .get('http://localhost:3000/song/url?id=' + index)
+        .then(require => {
+          // console.log(require.data.data[0].url)
+          if (require.data.data[0].url == null) {
+            alert('Vip音乐')
+          }
+          this.$store.commit('setUrl', require.data.data[0].url)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      this.axios
+        .get('http://localhost:3000/song/detail?ids=' + index)
+        .then(require => {
+          // console.log(require)
+          if (require.data.songs[0].al.picUrl == null) {
+            alert('Vip音乐')
+          }
+          let Times = require.data.songs[0].dt
+          let Seconds = Times / 1000
+          let m = parseInt(Seconds / 60)
+          let s = parseInt(Seconds - m * 60)
+          s = s < 10 ? '0' + s : s
+          let time = m + ':' + s
+
+          this.$store.commit('setImg', require.data.songs[0].al.picUrl)
+          this.$store.commit('setName', require.data.songs[0].name)
+          this.$store.commit('setTime', time)
+          this.$store.commit('sethuayu', require.data.songs[0].dt)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      // console.log(index)
     }
   },
   mounted() {
@@ -208,6 +322,7 @@ export default {
     // console.log(this.huayuGeDan)
     // console.log(this.huayuGeDanTime)
     this.$store.commit('setData', 1855148340)
+    // console.log(this.huayuGeDan)
   }
 }
 </script>

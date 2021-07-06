@@ -75,7 +75,7 @@ export default {
       // console.log(result3.data.songs[0])
       this.resultLm.push(result3.data.songs[0])
     }
-    console.log(this.resultLm)
+    // console.log(this.resultLm)
   }
 }
 </script>
