@@ -13,8 +13,10 @@
       ref="MusicPlay"
       @timeupdate="onTimeupdate"
       @ended="overAudio"
+      @pause="outAudio"
     ></audio>
     <div class="musicContent">
+      <!-- 播放按钮 -->
       <div class="musicBo">
         <img
           :src="musicImg[0].name"
@@ -36,21 +38,27 @@
         />
       </div>
       <div class="musicImg">
-        <img :src="Img" alt="Vip" width="60px" height="60px" />
+        <!-- 歌曲图片 -->
+        <img :src="huayuImg" alt="Vip" width="60px" height="60px" />
       </div>
       <div class="musicTime">
         <div class="musicTime_Name">
           <div class="musicTime_Name_cor1">
-            <span>{{ $store.state.huayuName }}</span>
+            <!-- 歌曲名字 -->
+            <!-- 还有这个this可以不写 -->
+            <span>{{ this.$store.state.huayuName }}</span>
           </div>
           <div class="musicTime_Name_cor2">
             <span>
+              <!-- 歌曲实时播放时间 -->
               <i>{{ this.$store.state.huayuDt }}</i>
               /
-              <i>{{ $store.state.huayuTime }}</i>
+              <!-- 歌曲总时间 -->
+              <i>{{ this.$store.state.huayuTime }}</i>
             </span>
           </div>
         </div>
+        <!-- 进度条 -->
         <el-progress
           :percentage="percentage"
           :color="customColor"
@@ -58,14 +66,24 @@
         ></el-progress>
       </div>
       <div class="musicDownload">
-        <img :src="musicImg[3].name" />
-        <img :src="musicImg[4].name" />
+        <!-- 下载 -->
+        <img :src="musicImg[3].name" @click="volumeShow = !volumeShow" />
+        <a :href="this.Url" download="mp3" target="_black"
+          ><img :src="musicImg[4].name"
+        /></a>
+        <div class="volume" v-show="volumeShow">
+          <el-progress
+            :percentage="percentage1"
+            :color="customColor"
+            :show-text="boolean"
+          ></el-progress>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+//music组件在Home组件里。我想放进歌词组件里，通过在huayu，liuxing，oumei，riben组件点击歌曲，跳转到歌词组件里播放音乐。
 export default {
   data() {
     return {
@@ -76,6 +94,8 @@ export default {
       jindutiao: '',
       minutes: 0,
       seconds: 0,
+      volumeShow: false,
+      Img: '',
       musicImg: [
         { id: 0, name: require('/src/assets/bofanL2.png') },
         { id: 1, name: require('/src/assets/bofan6.png') },
@@ -96,6 +116,7 @@ export default {
     }
   },
   methods: {
+    // 播放动画时间
     musicDown() {
       this.isMusicAnm1 = true
       this.isMusicAnm2 = false
@@ -104,6 +125,7 @@ export default {
       this.isMusicAnm2 = true
       this.isMusicAnm1 = false
     },
+    // 播放按钮事件
     bofan() {
       if (this.msg == 0) {
         this.$refs.MusicPlay.play()
@@ -111,6 +133,8 @@ export default {
         this.musicImg[1].name = require('/src/assets/bofan4.png')
         // this.timer = setInterval(this.startTimer, 1000)
         this.jindutiao = setInterval(this.increase, 1000)
+        this.$refs.MusicPlay.volume = 0.1
+        // console.log(this.$refs.MusicPlay.volume)
       } else {
         this.$refs.MusicPlay.pause()
         this.msg = 0
@@ -119,11 +143,13 @@ export default {
         clearInterval(this.jindutiao)
       }
     },
+    // 左切换
     bofanL() {
       this.Url = this.$store.state.huayuUrl[
         this.$store.state.huayuUrl.length - 2
       ]
     },
+    // 右切换
     bofanR() {
       this.Url = this.$store.state.huayuUrl[
         this.$store.state.huayuUrl.length - 1
@@ -138,6 +164,7 @@ export default {
         return '#67c23a'
       }
     },
+    // 音乐实时进度条
     increase() {
       if (this.$store.state.huayuDt == '00:00') {
         this.percentage = 0
@@ -150,6 +177,7 @@ export default {
         }
       }
     },
+    // 音乐实时时间
     onTimeupdate() {
       let m = parseInt(parseInt(event.target.currentTime) / 60)
       m = m < 10 ? '0' + m : m
@@ -162,17 +190,26 @@ export default {
     },
     overAudio() {
       this.musicImg[1].name = require('/src/assets/bofan6.png')
+    },
+    outAudio() {
+      clearInterval(this.jindutiao)
+    },
+    downloadExcel() {
+      window.location.href = this.Url
     }
   },
   computed: {
-    ...mapState(['huayu']),
+    // 歌曲路径
     Url() {
       return this.$store.state.huayuUrl[this.$store.state.huayuUrl.length - 1]
     },
-    Img() {
-      return this.$store.state.huayuImg[this.$store.state.huayuImg.length - 1]
+    huayuImg() {
+      // 如果vuex里面没有就去缓存里面找
+      console.log('music', this.$store.state.huayuImg)
+      return this.$store.state.huayuImg || JSON.parse(localStorage.getItem(1))
     }
   },
+  // 监听url变化
   watch: {
     Url(newName, oldName) {
       if (newName != oldName) {
@@ -180,8 +217,12 @@ export default {
       } else {
         this.musicImg[1].name = require('/src/assets/bofan4.png')
       }
-      console.log(newName, oldName)
+      // console.log(newName, oldName)
     }
+  },
+  beforeMount() {
+    // 删了
+    // localStorage
   }
 }
 </script>
@@ -189,7 +230,7 @@ export default {
 .music {
   width: 100%;
   height: 80px;
-  background-color: rgba(230, 73, 11, 0.397);
+  background-color: rgb(32, 185, 223);
   box-shadow: 0 0 3px 2px #ccc;
   position: fixed;
   bottom: -78px;
@@ -224,7 +265,7 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-.musicContent > .musicImg {
+.musicContent > a > .musicImg {
   width: 60px;
   height: 60px;
   background-color: red;
@@ -253,12 +294,19 @@ export default {
   width: 260px;
   height: 80px;
 }
-.musicContent > .musicDownload > img:first-child {
-  margin-top: 35px;
-  margin-left: 20px;
+.musicContent > .musicDownload > .volume {
+  width: 100px;
+  transform: rotate(90deg);
+  margin-top: -30px;
+  margin-left: -58px;
   float: left;
 }
-.musicContent > .musicDownload > img:last-child {
+.musicContent > .musicDownload > img:first-child {
+  margin-top: 35px;
+  margin-left: 42px;
+  float: left;
+}
+.musicContent > .musicDownload > img:first-child + a > img {
   margin-top: 35px;
   margin-right: 20px;
   float: right;

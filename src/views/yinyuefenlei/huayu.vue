@@ -3,6 +3,7 @@
     <ul class="huayuGeDan" ref="name">
       <li class="GeDan1">
         <ul class="huayuGeDan1">
+          <!-- 华语歌单列表1 -->
           <li
             v-for="item in huayuGeDan.slice(0, 8)"
             :key="item.id"
@@ -11,6 +12,8 @@
             :class="{ liBckCor: isLiBckCor == item.id }"
           >
             {{ item.name }}
+            <!-- 华语歌单列表播放图片 -->
+
             <img
               :src="imgUrl[0].img"
               alt=""
@@ -29,6 +32,7 @@
       </li>
       <li class="GeDan2">
         <ul class="huayuGeDan1">
+          <!-- 华语歌单列表2 -->
           <li
             v-for="item in huayuGeDan.slice(9, 17)"
             :key="item.id"
@@ -37,6 +41,8 @@
             :class="{ liBckCor1: isLiBckCor1 == item.id }"
           >
             {{ item.name }}
+            <!-- 华语歌单列表播放图片 -->
+
             <img
               :src="imgUrl[0].img"
               alt=""
@@ -55,6 +61,7 @@
       </li>
       <li class="GeDan3">
         <ul class="huayuGeDan1">
+          <!-- 华语歌单列表3 -->
           <li
             v-for="item in huayuGeDan.slice(17, 25)"
             :key="item.id"
@@ -63,6 +70,8 @@
             :class="{ liBckCor2: isLiBckCor2 == item.id }"
           >
             {{ item.name }}
+            <!-- 华语歌单列表播放图片 -->
+
             <img
               :src="imgUrl[0].img"
               alt=""
@@ -168,6 +177,7 @@ export default {
         this.L = 1
       }
     },
+    // 歌单列表1，点击播放图片，播放
     bofan1(index) {
       this.axios
         .get('http://localhost:3000/song/url?id=' + index)
@@ -183,20 +193,25 @@ export default {
       this.axios
         .get('http://localhost:3000/song/detail?ids=' + index)
         .then(require => {
-          // console.log(require)
+          // console.log(require.data.songs[0].al.picUrl)
           if (require.data.songs[0].al.picUrl == null) {
             alert('Vip音乐')
           }
+          // 时间格式转化
           let Times = require.data.songs[0].dt
           let Seconds = Times / 1000
           let m = parseInt(Seconds / 60)
           let s = parseInt(Seconds - m * 60)
           s = s < 10 ? '0' + s : s
           let time = m + ':' + s
-
+          // 图片路径
+          console.log(require.data.songs[0].al.picUrl)
           this.$store.commit('setImg', require.data.songs[0].al.picUrl)
+          // 名字
           this.$store.commit('setName', require.data.songs[0].name)
+          // 时间
           this.$store.commit('setTime', time)
+          // 毫秒
           this.$store.commit('sethuayu', require.data.songs[0].dt)
         })
         .catch(error => {
@@ -370,7 +385,7 @@ export default {
   color: #0c8ed9;
   cursor: pointer;
 }
-.huayu > .huayuGeDan > .GeDan1 > .huayuGeDan1 > li > img {
+.huayu > .huayuGeDan > .GeDan1 > .huayuGeDan1 > li > a > img {
   margin-top: 10px;
   margin-right: 60px;
   float: right;

@@ -11,6 +11,7 @@
             :class="{ liBckCor: isLiBckCor == item.id }"
           >
             {{ item.name }}
+
             <img
               :src="imgUrl[0].img"
               alt=""
@@ -37,6 +38,7 @@
             :class="{ liBckCor1: isLiBckCor1 == item.id }"
           >
             {{ item.name }}
+
             <img
               :src="imgUrl[0].img"
               alt=""
@@ -63,6 +65,7 @@
             :class="{ liBckCor2: isLiBckCor2 == item.id }"
           >
             {{ item.name }}
+
             <img
               :src="imgUrl[0].img"
               alt=""

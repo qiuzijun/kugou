@@ -5,6 +5,7 @@ import register from '../views/register.vue'
 import Home from '../Home.vue'
 import BangDan from '../views/bangdan/bangdan.vue'
 import footerDedan from '../components/footerGedan/footerGedan.vue'
+import geci from '../views/geci/geci.vue'
 
 
 Vue.use(VueRouter)
@@ -32,7 +33,11 @@ const routes = [{
   {
     path: '/footerDedan',
     component: footerDedan
-  }
+  },
+  {
+    path: '/geci',
+    component: geci
+  },
 
 ]
 
