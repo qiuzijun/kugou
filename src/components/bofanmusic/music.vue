@@ -1,13 +1,5 @@
 <template>
-  <div
-    class="music"
-    @mouseover="musicDown"
-    @mouseout="musicUp"
-    :class="{
-      musicAnm1: isMusicAnm1,
-      musicAnm2: isMusicAnm2
-    }"
-  >
+  <div class="music">
     <audio
       :src="Url"
       ref="MusicPlay"
@@ -39,13 +31,18 @@
       </div>
       <div class="musicImg">
         <!-- 歌曲图片 -->
-        <img :src="huayuImg" alt="Vip" width="60px" height="60px" />
+        <img
+          :src="huayuImg"
+          alt="Vip"
+          width="60px"
+          height="60px"
+          @click="geci()"
+        />
       </div>
       <div class="musicTime">
         <div class="musicTime_Name">
           <div class="musicTime_Name_cor1">
             <!-- 歌曲名字 -->
-            <!-- 还有这个this可以不写 -->
             <span>{{ this.$store.state.huayuName }}</span>
           </div>
           <div class="musicTime_Name_cor2">
@@ -72,11 +69,7 @@
           ><img :src="musicImg[4].name"
         /></a>
         <div class="volume" v-show="volumeShow">
-          <el-progress
-            :percentage="percentage1"
-            :color="customColor"
-            :show-text="boolean"
-          ></el-progress>
+          <el-slider v-model="value3" :show-tooltip="false"></el-slider>
         </div>
       </div>
     </div>
@@ -87,15 +80,13 @@
 export default {
   data() {
     return {
-      isMusicAnm1: false,
-      isMusicAnm2: false,
       msg: 0,
       timer: '',
       jindutiao: '',
       minutes: 0,
       seconds: 0,
       volumeShow: false,
-      Img: '',
+      value3: 20,
       musicImg: [
         { id: 0, name: require('/src/assets/bofanL2.png') },
         { id: 1, name: require('/src/assets/bofan6.png') },
@@ -105,26 +96,10 @@ export default {
       ],
       percentage: 0,
       boolean: false,
-      customColor: '#409eff',
-      customColors: [
-        { color: '#f56c6c', percentage: 20 },
-        { color: '#e6a23c', percentage: 40 },
-        { color: '#5cb87a', percentage: 60 },
-        { color: '#1989fa', percentage: 80 },
-        { color: '#6f7ad3', percentage: 100 }
-      ]
+      customColor: '#409eff'
     }
   },
   methods: {
-    // 播放动画时间
-    musicDown() {
-      this.isMusicAnm1 = true
-      this.isMusicAnm2 = false
-    },
-    musicUp() {
-      this.isMusicAnm2 = true
-      this.isMusicAnm1 = false
-    },
     // 播放按钮事件
     bofan() {
       if (this.msg == 0) {
@@ -133,8 +108,14 @@ export default {
         this.musicImg[1].name = require('/src/assets/bofan4.png')
         // this.timer = setInterval(this.startTimer, 1000)
         this.jindutiao = setInterval(this.increase, 1000)
-        this.$refs.MusicPlay.volume = 0.1
         // console.log(this.$refs.MusicPlay.volume)
+
+        // console.log(
+        //   JSON.parse(localStorage.getItem('musicList'))[
+        //     JSON.parse(localStorage.getItem('musicList')).length - 1
+        //   ]
+        // )
+        // console.log(this.$store.state.huayuImg)
       } else {
         this.$refs.MusicPlay.pause()
         this.msg = 0
@@ -154,15 +135,6 @@ export default {
       this.Url = this.$store.state.huayuUrl[
         this.$store.state.huayuUrl.length - 1
       ]
-    },
-    customColorMethod(percentage) {
-      if (percentage < 30) {
-        return '#909399'
-      } else if (percentage < 70) {
-        return '#e6a23c'
-      } else {
-        return '#67c23a'
-      }
     },
     // 音乐实时进度条
     increase() {
@@ -196,16 +168,30 @@ export default {
     },
     downloadExcel() {
       window.location.href = this.Url
+    },
+    geci() {
+      const { href } = this.$router.resolve({
+        path: '/geci',
+        query: {
+          id: this.$store.state.huayuID,
+          name: this.$store.state.huayuName,
+          zhuanji: this.$store.state.musicXi.data.songs[0].al.name,
+          geshouName: this.$store.state.musicXi.data.songs[0].ar[0].name,
+          musicImg: this.$store.state.musicXi.data.songs[0].al.picUrl,
+          musicUrl: this.$store.state.huayuUrl
+        }
+      })
+      window.open(href, '_black')
     }
   },
   computed: {
     // 歌曲路径
     Url() {
-      return this.$store.state.huayuUrl[this.$store.state.huayuUrl.length - 1]
+      return this.$store.state.huayuUrl
     },
     huayuImg() {
       // 如果vuex里面没有就去缓存里面找
-      console.log('music', this.$store.state.huayuImg)
+      // console.log('music', this.$store.state.huayuImg)
       return this.$store.state.huayuImg || JSON.parse(localStorage.getItem(1))
     }
   },
@@ -218,12 +204,13 @@ export default {
         this.musicImg[1].name = require('/src/assets/bofan4.png')
       }
       // console.log(newName, oldName)
+    },
+    value3(newName) {
+      this.$refs.MusicPlay.volume = parseFloat(newName / 100)
+      // console.log(parseFloat(newName / 100))
     }
   },
-  beforeMount() {
-    // 删了
-    // localStorage
-  }
+  mounted() {}
 }
 </script>
 <style>
@@ -233,22 +220,7 @@ export default {
   background-color: rgb(32, 185, 223);
   box-shadow: 0 0 3px 2px #ccc;
   position: fixed;
-  bottom: -78px;
-  cursor: pointer;
-}
-.musicAnm1 {
-  position: fixed;
   bottom: 0px;
-  transition-property: all;
-  transition-duration: 0.2s;
-  transition-timing-function: linear;
-}
-.musicAnm2 {
-  position: fixed;
-  bottom: -78px;
-  transition-property: all;
-  transition-duration: 0.6s;
-  transition-timing-function: linear;
 }
 .musicContent {
   width: 1000px;
@@ -264,11 +236,13 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
-.musicContent > a > .musicImg {
+.musicContent > .musicImg {
   width: 60px;
   height: 60px;
   background-color: red;
+  cursor: pointer;
 }
 .musicContent > .musicTime {
   width: 370px;
@@ -296,15 +270,14 @@ export default {
 }
 .musicContent > .musicDownload > .volume {
   width: 100px;
-  transform: rotate(90deg);
-  margin-top: -30px;
-  margin-left: -58px;
-  float: left;
+  margin-left: 70px;
+  margin-top: 25px;
 }
 .musicContent > .musicDownload > img:first-child {
   margin-top: 35px;
   margin-left: 42px;
   float: left;
+  cursor: pointer;
 }
 .musicContent > .musicDownload > img:first-child + a > img {
   margin-top: 35px;

@@ -119,7 +119,8 @@ export default {
         { id: 0, img: require('/src/assets/bofan1.png') },
         { id: 1, img: require('/src/assets/jiantouL.png') },
         { id: 2, img: require('/src/assets/jiantou.png') }
-      ]
+      ],
+      currentMUsicLyric: []
     }
   },
   methods: {
@@ -178,122 +179,126 @@ export default {
       }
     },
     // 歌单列表1，点击播放图片，播放
-    bofan1(index) {
-      this.axios
-        .get('http://localhost:3000/song/url?id=' + index)
-        .then(require => {
-          if (require.data.data[0].url == null) {
-            alert('Vip音乐')
-          }
-          this.$store.commit('setUrl', require.data.data[0].url)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-      this.axios
-        .get('http://localhost:3000/song/detail?ids=' + index)
-        .then(require => {
-          // console.log(require.data.songs[0].al.picUrl)
-          if (require.data.songs[0].al.picUrl == null) {
-            alert('Vip音乐')
-          }
-          // 时间格式转化
-          let Times = require.data.songs[0].dt
-          let Seconds = Times / 1000
-          let m = parseInt(Seconds / 60)
-          let s = parseInt(Seconds - m * 60)
-          s = s < 10 ? '0' + s : s
-          let time = m + ':' + s
-          // 图片路径
-          console.log(require.data.songs[0].al.picUrl)
-          this.$store.commit('setImg', require.data.songs[0].al.picUrl)
-          // 名字
-          this.$store.commit('setName', require.data.songs[0].name)
-          // 时间
-          this.$store.commit('setTime', time)
-          // 毫秒
-          this.$store.commit('sethuayu', require.data.songs[0].dt)
-        })
-        .catch(error => {
-          console.log(error)
-        })
+    async bofan1(index) {
+      let musicUrl = await this.axios.get(
+        'http://localhost:3000/song/url?id=' + index
+      )
+      if (musicUrl.data.data[0].url == null) {
+        alert('Vip音乐')
+      }
+      // console.log(musicUrl)
+      this.$store.commit('setUrl', musicUrl.data.data[0].url)
+
+      let musiclist = await this.axios.get(
+        'http://localhost:3000/song/detail?ids=' + index
+      )
+      // console.log(require)
+      if (musiclist.data.songs[0].al.picUrl == null) {
+        alert('Vip音乐')
+      }
+      // 时间格式转化
+      let Times = musiclist.data.songs[0].dt
+      let Seconds = Times / 1000
+      let m = parseInt(Seconds / 60)
+      let s = parseInt(Seconds - m * 60)
+      s = s < 10 ? '0' + s : s
+      let time = m + ':' + s
+
+      // console.log(require.data.songs[0].al.picUrl)
+      this.$store.commit('setmusicList', musiclist)
+      // 歌曲id
+      this.$store.commit('setID', musiclist.data.songs[0].id)
+      // 图片路径
+      this.$store.commit('setImg', musiclist.data.songs[0].al.picUrl)
+      // 名字
+      this.$store.commit('setName', musiclist.data.songs[0].name)
+      // 时间
+      this.$store.commit('setTime', time)
+      // 毫秒
+      this.$store.commit('sethuayu', musiclist.data.songs[0].dt)
       // console.log(index)
 
       // console.log(this.$store.state.huayu)
     },
-    bofan2(index) {
-      this.axios
-        .get('http://localhost:3000/song/url?id=' + index)
-        .then(require => {
-          // console.log(require.data.data[0].url)
-          if (require.data.data[0].url == null) {
-            alert('Vip音乐')
-          }
-          this.$store.commit('setUrl', require.data.data[0].url)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-      this.axios
-        .get('http://localhost:3000/song/detail?ids=' + index)
-        .then(require => {
-          // console.log(require)
-          if (require.data.songs[0].al.picUrl == null) {
-            alert('Vip音乐')
-          }
-          let Times = require.data.songs[0].dt
-          let Seconds = Times / 1000
-          let m = parseInt(Seconds / 60)
-          let s = parseInt(Seconds - m * 60)
-          s = s < 10 ? '0' + s : s
-          let time = m + ':' + s
+    async bofan2(index) {
+      let musicUrl = await this.axios.get(
+        'http://localhost:3000/song/url?id=' + index
+      )
+      if (musicUrl.data.data[0].url == null) {
+        alert('Vip音乐')
+      }
+      // console.log(musicUrl)
+      this.$store.commit('setUrl', musicUrl.data.data[0].url)
 
-          this.$store.commit('setImg', require.data.songs[0].al.picUrl)
-          this.$store.commit('setName', require.data.songs[0].name)
-          this.$store.commit('setTime', time)
-          this.$store.commit('sethuayu', require.data.songs[0].dt)
-        })
-        .catch(error => {
-          console.log(error)
-        })
+      let musiclist = await this.axios.get(
+        'http://localhost:3000/song/detail?ids=' + index
+      )
+      // console.log(require)
+      if (musiclist.data.songs[0].al.picUrl == null) {
+        alert('Vip音乐')
+      }
+      // 时间格式转化
+      let Times = musiclist.data.songs[0].dt
+      let Seconds = Times / 1000
+      let m = parseInt(Seconds / 60)
+      let s = parseInt(Seconds - m * 60)
+      s = s < 10 ? '0' + s : s
+      let time = m + ':' + s
+      // 图片路径
+      // console.log(require.data.songs[0].al.picUrl)
+      this.$store.commit('setmusicList', musiclist)
+      // 歌曲id
+      this.$store.commit('setID', musiclist.data.songs[0].id)
+      this.$store.commit('setImg', musiclist.data.songs[0].al.picUrl)
+      // 名字
+      this.$store.commit('setName', musiclist.data.songs[0].name)
+      // 时间
+      this.$store.commit('setTime', time)
+      // 毫秒
+      this.$store.commit('sethuayu', musiclist.data.songs[0].dt)
       // console.log(index)
+
+      // console.log(this.$store.state.huayu)
     },
-    bofan3(index) {
-      this.axios
-        .get('http://localhost:3000/song/url?id=' + index)
-        .then(require => {
-          // console.log(require.data.data[0].url)
-          if (require.data.data[0].url == null) {
-            alert('Vip音乐')
-          }
-          this.$store.commit('setUrl', require.data.data[0].url)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-      this.axios
-        .get('http://localhost:3000/song/detail?ids=' + index)
-        .then(require => {
-          // console.log(require)
-          if (require.data.songs[0].al.picUrl == null) {
-            alert('Vip音乐')
-          }
-          let Times = require.data.songs[0].dt
-          let Seconds = Times / 1000
-          let m = parseInt(Seconds / 60)
-          let s = parseInt(Seconds - m * 60)
-          s = s < 10 ? '0' + s : s
-          let time = m + ':' + s
+    async bofan3(index) {
+      let musicUrl = await this.axios.get(
+        'http://localhost:3000/song/url?id=' + index
+      )
+      if (musicUrl.data.data[0].url == null) {
+        alert('Vip音乐')
+      }
+      // console.log(musicUrl)
+      this.$store.commit('setUrl', musicUrl.data.data[0].url)
 
-          this.$store.commit('setImg', require.data.songs[0].al.picUrl)
-          this.$store.commit('setName', require.data.songs[0].name)
-          this.$store.commit('setTime', time)
-          this.$store.commit('sethuayu', require.data.songs[0].dt)
-        })
-        .catch(error => {
-          console.log(error)
-        })
+      let musiclist = await this.axios.get(
+        'http://localhost:3000/song/detail?ids=' + index
+      )
+      // console.log(require)
+      if (musiclist.data.songs[0].al.picUrl == null) {
+        alert('Vip音乐')
+      }
+      // 时间格式转化
+      let Times = musiclist.data.songs[0].dt
+      let Seconds = Times / 1000
+      let m = parseInt(Seconds / 60)
+      let s = parseInt(Seconds - m * 60)
+      s = s < 10 ? '0' + s : s
+      let time = m + ':' + s
+      // 图片路径
+      // console.log(require.data.songs[0].al.picUrl)
+      this.$store.commit('setmusicList', musiclist)
+      this.$store.commit('setImg', musiclist.data.songs[0].al.picUrl)
+      // 歌曲id
+      this.$store.commit('setID', musiclist.data.songs[0].id)
+      // 名字
+      this.$store.commit('setName', musiclist.data.songs[0].name)
+      // 时间
+      this.$store.commit('setTime', time)
+      // 毫秒
+      this.$store.commit('sethuayu', musiclist.data.songs[0].dt)
       // console.log(index)
+
+      // console.log(this.$store.state.huayu)
     }
   },
   mounted() {

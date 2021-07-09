@@ -6,6 +6,8 @@ import Home from '../Home.vue'
 import BangDan from '../views/bangdan/bangdan.vue'
 import footerDedan from '../components/footerGedan/footerGedan.vue'
 import geci from '../views/geci/geci.vue'
+import MV from '../views/MV/mv.vue'
+import mvList from '../views/mvList/mvList.vue'
 
 
 Vue.use(VueRouter)
@@ -37,6 +39,14 @@ const routes = [{
   {
     path: '/geci',
     component: geci
+  },
+  {
+    path: '/MV',
+    component: MV
+  },
+  {
+    path: '/mvList',
+    component: mvList
   },
 
 ]

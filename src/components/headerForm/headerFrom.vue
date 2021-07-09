@@ -27,7 +27,7 @@
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>电台</el-dropdown-item>
-            <el-dropdown-item>MV</el-dropdown-item>
+            <el-dropdown-item @click.native="mvlist">MV</el-dropdown-item>
             <el-dropdown-item>歌单</el-dropdown-item>
             <el-dropdown-item>歌手</el-dropdown-item>
           </el-dropdown-menu>
@@ -174,6 +174,12 @@ export default {
         default:
           break
       }
+    },
+    mvlist() {
+      const { href } = this.$router.resolve({
+        path: '/mvList'
+      })
+      window.open(href, '_black')
     }
   }
 }

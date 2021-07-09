@@ -5,6 +5,9 @@ import store from './store'
 import axios from 'axios'
 import './plugins/element.js'
 import animated from 'animate.css'
+import HappyScroll from 'vue-happy-scroll'
+import 'vue-happy-scroll/docs/happy-scroll.css'
+Vue.use(HappyScroll)
 Vue.use(animated)
 
 Vue.config.silent = true

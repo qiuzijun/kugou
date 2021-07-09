@@ -15,6 +15,7 @@
           v-show="msg == item.id"
           @mouseover="msgOver1(item.id)"
           @mouseout="msgOut1()"
+          @click="bofan(item.id)"
         />
         <div class="qingxinN">
           <div class="number1">
@@ -58,6 +59,48 @@ export default {
     },
     msgOut1() {
       this.img[1].name = require('/src/assets/bofang1.png')
+    },
+    async bofan(index) {
+      let musicUrl = await this.axios.get(
+        'http://localhost:3000/song/url?id=' + index
+      )
+      if (musicUrl.data.data[0].url == null) {
+        alert('Vip音乐')
+      }
+      // console.log(musicUrl)
+      this.$store.commit('setUrl', musicUrl.data.data[0].url)
+
+      let musiclist = await this.axios.get(
+        'http://localhost:3000/song/detail?ids=' + index
+      )
+      // console.log(require)
+      if (musiclist.data.songs[0].al.picUrl == null) {
+        alert('Vip音乐')
+      }
+      // 时间格式转化
+      let Times = musiclist.data.songs[0].dt
+      let Seconds = Times / 1000
+      let m = parseInt(Seconds / 60)
+      let s = parseInt(Seconds - m * 60)
+      s = s < 10 ? '0' + s : s
+      let time = m + ':' + s
+
+      // console.log(require.data.songs[0].al.picUrl)
+      this.$store.commit('setmusicList', musiclist)
+      // 歌曲id
+      this.$store.commit('setID', musiclist.data.songs[0].id)
+      // 图片路径
+      this.$store.commit('setImg', musiclist.data.songs[0].al.picUrl)
+      // 名字
+      this.$store.commit('setName', musiclist.data.songs[0].name)
+      // 时间
+      this.$store.commit('setTime', time)
+      // 毫秒
+      this.$store.commit('sethuayu', musiclist.data.songs[0].dt)
+      // console.log(index)
+
+      // console.log(this.$store.state.huayu)
+      // console.log(index)
     }
   },
   async beforeMount() {
