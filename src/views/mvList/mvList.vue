@@ -3,7 +3,7 @@
     <Header></Header>
     <HeaderForm></HeaderForm>
     <div class="mvList">
-      <div class="mvListTop">
+      <div class="mvListTop1">
         <!-- 轮播图 -->
         <div class="mvListTopl" @mouseover="anmOver" @mouseout="anmOut">
           <ul ref="mvLi" :style="{ position: 'absolute', left: isleft }">
@@ -59,11 +59,42 @@
         </div>
       </div>
     </div>
+    <div class="mvType">
+      <div class="mvTypeTop">
+        <p>MV分类</p>
+        <p>推荐MV</p>
+      </div>
+      <div class="mvTypeBtn">
+        <ul>
+          <li
+            v-for="item in mvType"
+            :key="item.id"
+            @mouseover="mvTypeOver(item.id)"
+            @mouseout="mvTypeOut"
+            :class="{ tyBgCor: isTyBgCor == item.id }"
+          >
+            {{ item.name }}
+          </li>
+        </ul>
+        <div class="mvTypeBtnR">
+          <xgJx v-show="msg == 0"></xgJx>
+          <huayuJx v-show="msg == 1"></huayuJx>
+          <ribenJx v-show="msg == 2"></ribenJx>
+          <oumeiJx v-show="msg == 3"></oumeiJx>
+        </div>
+      </div>
+    </div>
+    <Footer></Footer>
   </div>
 </template>
 <script>
 import Header from '/src/components/Header/Header.vue'
 import HeaderForm from '/src/components/headerForm/headerFrom.vue'
+import Footer from '/src/components/Footer/Footer.vue'
+import xgJx from '../mvType/xingetuijian.vue'
+import huayuJx from '../mvType/huayutuijian.vue'
+import oumeiJx from '../mvType/oumeituijian.vue'
+import ribenJx from '../mvType/ribentuijian.vue'
 export default {
   data() {
     return {
@@ -72,6 +103,9 @@ export default {
       indexList: 0,
       islimvPaih: -1,
       isSpanCor: -1,
+      isTyBgCor: -1,
+      // msg切换mv分类
+      msg: 1,
       runboMv: [
         {
           id: 0,
@@ -160,16 +194,23 @@ export default {
           mvId: 14297151,
           name: '88rising-California (Acoustic Live Version)'
         }
+      ],
+      mvType: [
+        { id: 0, name: '新歌推荐' },
+        { id: 1, name: '华语精选' },
+        { id: 2, name: '日语精选' },
+        { id: 3, name: '欧美精选' }
       ]
     }
   },
   components: {
     Header,
-    HeaderForm
-  },
-  async beforeMount() {
-    let musicMv = await this.axios.get('http://localhost:3000/top/mv?limit=10')
-    console.log(musicMv)
+    HeaderForm,
+    Footer,
+    xgJx,
+    huayuJx,
+    oumeiJx,
+    ribenJx
   },
   mounted() {
     // 轮播图
@@ -236,12 +277,19 @@ export default {
         }
       })
       window.open(href, '_black')
+    },
+    mvTypeOver(index) {
+      this.isTyBgCor = index
+      this.msg = index
+    },
+    mvTypeOut() {
+      this.isTyBgCor = -1
     }
   }
 }
 </script>
 <style>
-.mvList > .mvListTop {
+.mvList > .mvListTop1 {
   width: 1000px;
   height: 325px;
   margin: 10px auto 0px;
@@ -249,25 +297,25 @@ export default {
   justify-content: space-between;
 }
 /* 轮播图 */
-.mvList > .mvListTop > .mvListTopl {
+.mvList > .mvListTop1 > .mvListTopl {
   width: 665px;
   height: 325px;
   overflow: hidden;
   position: relative;
 }
-.mvList > .mvListTop > .mvListTopl > ul {
+.mvList > .mvListTop1 > .mvListTopl > ul {
   width: 3325px;
   height: 325px;
   transition: left 0.2s;
   cursor: pointer;
 }
-.mvList > .mvListTop > .mvListTopl > ul li {
+.mvList > .mvListTop1 > .mvListTopl > ul li {
   width: 665px;
   height: 325px;
   position: relative;
   float: left;
 }
-.mvList > .mvListTop > .mvListTopl > ul li > .mvName {
+.mvList > .mvListTop1 > .mvListTopl > ul li > .mvName {
   width: 665px;
   height: 40px;
   background-color: rgba(0, 0, 0, 0.7);
@@ -277,13 +325,13 @@ export default {
   margin-top: -40px;
 }
 
-.mvList > .mvListTop > .mvListTopl > .liLunbo {
+.mvList > .mvListTop1 > .mvListTopl > .liLunbo {
   margin-top: 300px;
   margin-left: 520px;
   position: absolute;
   z-index: 200;
 }
-.mvList > .mvListTop > .mvListTopl > .liLunbo li {
+.mvList > .mvListTop1 > .mvListTopl > .liLunbo li {
   width: 12px;
   height: 12px;
   background-color: white;
@@ -292,10 +340,10 @@ export default {
   margin-right: 15px;
   cursor: pointer;
 }
-.mvList > .mvListTop > .mvListTopl > .liLunbo > .liCor {
+.mvList > .mvListTop1 > .mvListTopl > .liLunbo > .liCor {
   background-color: rgb(29, 7, 143);
 }
-.mvList > .mvListTop > .mvListTopl ul li > .mvName span {
+.mvList > .mvListTop1 > .mvListTopl ul li > .mvName span {
   color: #fff;
   font-size: 15px;
   display: block;
@@ -303,48 +351,48 @@ export default {
   margin: 7px 0 0 20px;
   cursor: pointer;
 }
-.mvList > .mvListTop > .mvListTopl ul li > .mvName .spanCor {
+.mvList > .mvListTop1 > .mvListTopl ul li > .mvName .spanCor {
   color: orange;
 }
 /* mv排行 */
-.mvList > .mvListTop > .mvListTopr {
+.mvList > .mvListTop1 > .mvListTopr {
   width: 318px;
   height: 325px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.mvList > .mvListTop > .mvListTopr > .mvListToprt {
+.mvList > .mvListTop1 > .mvListTopr > .mvListToprt {
   width: 318px;
   height: 30px;
   display: flex;
   justify-content: space-between;
 }
-.mvList > .mvListTop > .mvListTopr > .mvListToprt .p {
+.mvList > .mvListTop1 > .mvListTopr > .mvListToprt .p {
   width: 235px;
   height: 30px;
   color: #fff;
   background-color: orange;
   text-align: left;
 }
-.mvList > .mvListTop > .mvListTopr > .mvListToprt .p p {
+.mvList > .mvListTop1 > .mvListTopr > .mvListToprt .p p {
   margin: 3px 0 0 10px;
 }
-.mvList > .mvListTop > .mvListTopr > .mvListToprt .a {
+.mvList > .mvListTop1 > .mvListTopr > .mvListToprt .a {
   width: 80px;
   height: 30px;
   background-color: rgb(63, 60, 60);
 }
-.mvList > .mvListTop > .mvListTopr > .mvListToprt .a a {
+.mvList > .mvListTop1 > .mvListTopr > .mvListToprt .a a {
   color: #fff;
   line-height: 30px;
 }
-.mvList > .mvListTop > .mvListTopr > .mvListToprb {
+.mvList > .mvListTop1 > .mvListTopr > .mvListToprb {
   width: 318px;
   height: 290px;
   /* background-color: red; */
 }
-.mvList > .mvListTop > .mvListTopr > .mvListToprb > ul {
+.mvList > .mvListTop1 > .mvListTopr > .mvListToprb > ul {
   width: 318px;
   height: 290px;
   background-color: rgb(63, 60, 60);
@@ -352,7 +400,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
-.mvList > .mvListTop > .mvListTopr > .mvListToprb > ul li {
+.mvList > .mvListTop1 > .mvListTopr > .mvListToprb > ul li {
   width: 318px;
   height: 29px;
   color: #fff;
@@ -363,7 +411,56 @@ export default {
   text-overflow: ellipsis;
   cursor: pointer;
 }
-.mvList > .mvListTop > .mvListTopr > .mvListToprb > ul .limvPaih {
+.mvList > .mvListTop1 > .mvListTopr > .mvListToprb > ul .limvPaih {
   color: orange;
+}
+/* mv分类 */
+.mvType {
+  width: 1000px;
+  height: 558px;
+  margin: 15px auto 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.mvType > .mvTypeTop {
+  width: 1000px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.mvType > .mvTypeTop p:first-child {
+  width: 210px;
+  height: 30px;
+  color: #fff;
+  line-height: 32px;
+  background-color: #ccc;
+}
+.mvType > .mvTypeTop p:last-child {
+  width: 780px;
+  height: 30px;
+  color: #fff;
+  line-height: 32px;
+  background-color: #ccc;
+}
+.mvType > .mvTypeBtn {
+  width: 1000px;
+  height: 520px;
+  display: flex;
+  justify-content: space-between;
+}
+.mvType > .mvTypeBtn > ul {
+  width: 210px;
+  height: 144px;
+}
+.mvType > .mvTypeBtn > ul > li {
+  width: 210px;
+  height: 36px;
+  font-size: 13px;
+  line-height: 36px;
+  cursor: pointer;
+}
+.mvType > .mvTypeBtn > ul .tyBgCor {
+  background-color: #85d4f3;
 }
 </style>
