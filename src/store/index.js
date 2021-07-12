@@ -15,7 +15,8 @@ export default new Vuex.Store({
     huayu: '',
     huayuTe: "",
     // 播放列表
-    musicXi: ''
+    musicXi: '',
+    musicList: []
   },
   // 都在music组件里
   mutations: {
@@ -62,9 +63,10 @@ export default new Vuex.Store({
 
     },
     setmusicList(state, payload) {
-      // localStorage.setItem('musicList', JSON.stringify(state.musicList))
+      localStorage.setItem('musicList', JSON.stringify(state.musicList))
       state.musicXi = payload
-      console.log(state.musicXi)
+      state.musicList.push(state.musicXi)
+      // console.log(state.musicXi)
       // console.log(localStorage.getItem('musicList'))
     }
   },

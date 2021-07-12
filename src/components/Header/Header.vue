@@ -10,7 +10,15 @@
         />
       </div>
       <div class="homeText">
-        <input type="text" class="homeInput" placeholder="毛不易 如梦所期" />
+        <input type="text" class="homeInput" v-model="Text" />
+        <img
+          :src="inputImg[0].name"
+          width="16px"
+          height="16px"
+          @mouseover="imgOver"
+          @mouseout="imgOut"
+          @click="imgClk"
+        />
       </div>
       <div class="homeUl">
         <ul>
@@ -41,12 +49,14 @@
 export default {
   data() {
     return {
+      Text: '',
       list: [
         { id: 0, name: '客服中心' },
         { id: 1, name: '招贤纳士' },
         { id: 2, name: '会员中心' },
         { id: 3, name: '商务合作' }
       ],
+      inputImg: [{ id: 0, name: require('/src/assets/input1.png') }],
       isColor: -1,
       isborR: 0
     }
@@ -68,6 +78,18 @@ export default {
     },
     borRout() {
       this.isborR = 0
+    },
+    imgOver() {
+      this.inputImg[0].name = require('/src/assets/input2.png')
+    },
+    imgOut() {
+      this.inputImg[0].name = require('/src/assets/input1.png')
+    },
+    async imgClk() {
+      let text = await this.axios.get(
+        'http://localhost:3000/search/multimatch?keywords=' + this.Text
+      )
+      console.log(text)
     }
   }
 }
@@ -95,6 +117,12 @@ export default {
 .homeNr > .homeText {
   margin-left: -100px;
   margin-top: 20px;
+  /* overflow: hidden; */
+}
+.homeNr > .homeText > img {
+  margin-left: -30px;
+  margin-top: 5px;
+  cursor: pointer;
 }
 .homeInput {
   width: 300px;

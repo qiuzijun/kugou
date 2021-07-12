@@ -68,8 +68,12 @@ export default {
       lsitUrl: [
         { id: 0, name: '' },
         { id: 1, name: 'http://localhost:8080/#/bangdan' },
-        { id: 2, name: '' },
-        { id: 3, name: '' }
+        { id: 2, name: 'https://download.kugou.com/download/kugou_pc' },
+        {
+          id: 3,
+          name:
+            'https://www.kugou.com/music_recognition/?from=pcweb#customer_case'
+        }
       ],
       list2: [
         { id: 0, img: require('/src/assets/2.png'), name: '直播' },
@@ -88,8 +92,17 @@ export default {
     listover(index) {
       this.current = index
       switch (index) {
+        case (index = 0):
+          this.url = 0
+          break
         case (index = 1):
           this.url = this.lsitUrl[1].name
+          break
+        case (index = 2):
+          this.url = this.lsitUrl[2].name
+          break
+        case (index = 3):
+          this.url = this.lsitUrl[3].name
           break
 
         default:

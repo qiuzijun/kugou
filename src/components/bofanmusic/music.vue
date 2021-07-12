@@ -72,6 +72,35 @@
           <el-slider v-model="value3" :show-tooltip="false"></el-slider>
         </div>
       </div>
+      <div class="list">
+        <img
+          :src="listImg[0].name"
+          width="60px"
+          height="23px "
+          @mouseover="listOver"
+          @mouseout="listOut"
+          @click="musicListNbr = !musicListNbr"
+        />
+        <p :class="{ pCor: ispCor }">
+          {{ this.musicList.length - 1 == -1 ? 0 : this.musicList.length }}
+        </p>
+      </div>
+    </div>
+    <div class="musicList" v-show="musicListNbr">
+      <div class="musicListTop">
+        <p>
+          播放列表/{{
+            this.musicList.length - 1 == -1 ? 0 : this.musicList.length
+          }}
+        </p>
+      </div>
+      <div class="musicListBtn">
+        <ul id="musicListS">
+          <li v-for="(item, index) in musicList" :key="index" @click="qiehuan">
+            {{ item.data.songs[0].name }}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -87,6 +116,8 @@ export default {
       seconds: 0,
       volumeShow: false,
       value3: 20,
+      ispCor: false,
+      musicListNbr: false,
       musicImg: [
         { id: 0, name: require('/src/assets/bofanL2.png') },
         { id: 1, name: require('/src/assets/bofan6.png') },
@@ -94,6 +125,8 @@ export default {
         { id: 3, name: require('/src/assets/laba1.png') },
         { id: 4, name: require('/src/assets/xiazai1.png') }
       ],
+      listImg: [{ id: 0, name: require('/src/assets/list0.png') }],
+      musicList: [],
       percentage: 0,
       boolean: false,
       customColor: '#409eff'
@@ -110,11 +143,7 @@ export default {
         this.jindutiao = setInterval(this.increase, 1000)
         // console.log(this.$refs.MusicPlay.volume)
 
-        // console.log(
-        //   JSON.parse(localStorage.getItem('musicList'))[
-        //     JSON.parse(localStorage.getItem('musicList')).length - 1
-        //   ]
-        // )
+        // console.log(JSON.parse(localStorage.getItem('musicList')))
         // console.log(this.$store.state.huayuImg)
       } else {
         this.$refs.MusicPlay.pause()
@@ -123,6 +152,8 @@ export default {
         // clearInterval(this.timer)
         clearInterval(this.jindutiao)
       }
+      this.musicList = JSON.parse(localStorage.getItem('musicList'))
+      console.log(this.musicList)
     },
     // 左切换
     bofanL() {
@@ -182,7 +213,17 @@ export default {
         }
       })
       window.open(href, '_black')
-    }
+    },
+    // 列表
+    listOver() {
+      this.listImg[0].name = require('/src/assets/list1.png')
+      this.ispCor = true
+    },
+    listOut() {
+      this.listImg[0].name = require('/src/assets/list0.png')
+      this.ispCor = false
+    },
+    qiehuan() {}
   },
   computed: {
     // 歌曲路径
@@ -210,7 +251,9 @@ export default {
       // console.log(parseFloat(newName / 100))
     }
   },
-  mounted() {}
+  beforeMount() {
+    // console.log(this.musicList[0])
+  }
 }
 </script>
 <style>
@@ -283,5 +326,62 @@ export default {
   margin-top: 35px;
   margin-right: 20px;
   float: right;
+}
+.musicContent > .list {
+  width: 60px;
+  height: 23px;
+  float: right;
+  cursor: pointer;
+}
+.musicContent > .list > p {
+  margin-top: -20px;
+  margin-left: 10px;
+  color: #fff;
+}
+.musicContent > .list > .pCor {
+  color: rgb(32, 185, 223);
+}
+.musicList {
+  width: 480px;
+  height: 412px;
+  margin-top: -495px;
+  margin-left: 950px;
+  overflow: hidden;
+  background-color: rgb(30, 28, 39);
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
+.musicList > .musicListTop {
+  width: 450px;
+  height: 50px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.musicList > .musicListTop > p {
+  font-size: 16px;
+  color: #ccc;
+  text-align: left;
+  margin-top: 15px;
+}
+.musicList > .musicListBtn {
+  margin: 0 auto;
+  overflow: hidden;
+  /* background-color: pink; */
+}
+#musicListS {
+  width: 450px;
+  height: 360px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+#musicListS > li {
+  width: 450px;
+  height: 40px;
+  color: #ccc;
+  cursor: pointer;
+  text-align: left;
 }
 </style>
