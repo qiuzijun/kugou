@@ -96,13 +96,16 @@ export default {
 </script>
 <style>
 .Home {
-  width: 1000px;
+  width: 100%;
   height: 80px;
-  margin: 0 auto;
+
   overflow: hidden;
   /* background-color: red; */
 }
 .homeNr {
+  width: 52%;
+  height: 80px;
+  margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

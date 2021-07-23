@@ -181,7 +181,7 @@ export default {
     // 歌单列表1，点击播放图片，播放
     async bofan1(index) {
       let musicUrl = await this.axios.get(
-        'http://localhost:3000/song/url?id=' + index
+        'https://wyymusicapi.vercel.app/song/url?id=' + index
       )
       if (musicUrl.data.data[0].url == null) {
         alert('Vip音乐')
@@ -190,7 +190,7 @@ export default {
       this.$store.commit('setUrl', musicUrl.data.data[0].url)
 
       let musiclist = await this.axios.get(
-        'http://localhost:3000/song/detail?ids=' + index
+        'https://wyymusicapi.vercel.app/song/detail?ids=' + index
       )
       // console.log(require)
       if (musiclist.data.songs[0].al.picUrl == null) {
@@ -222,7 +222,7 @@ export default {
     },
     async bofan2(index) {
       let musicUrl = await this.axios.get(
-        'http://localhost:3000/song/url?id=' + index
+        'https://wyymusicapi.vercel.app/song/url?id=' + index
       )
       if (musicUrl.data.data[0].url == null) {
         alert('Vip音乐')
@@ -231,7 +231,7 @@ export default {
       this.$store.commit('setUrl', musicUrl.data.data[0].url)
 
       let musiclist = await this.axios.get(
-        'http://localhost:3000/song/detail?ids=' + index
+        'https://wyymusicapi.vercel.app/song/detail?ids=' + index
       )
       // console.log(require)
       if (musiclist.data.songs[0].al.picUrl == null) {
@@ -262,7 +262,7 @@ export default {
     },
     async bofan3(index) {
       let musicUrl = await this.axios.get(
-        'http://localhost:3000/song/url?id=' + index
+        'https://wyymusicapi.vercel.app/song/url?id=' + index
       )
       if (musicUrl.data.data[0].url == null) {
         alert('Vip音乐')
@@ -271,7 +271,7 @@ export default {
       this.$store.commit('setUrl', musicUrl.data.data[0].url)
 
       let musiclist = await this.axios.get(
-        'http://localhost:3000/song/detail?ids=' + index
+        'https://wyymusicapi.vercel.app/song/detail?ids=' + index
       )
       // console.log(require)
       if (musiclist.data.songs[0].al.picUrl == null) {
@@ -310,7 +310,7 @@ export default {
   },
   async beforeMount() {
     let result = await this.axios.get(
-      'http://localhost:3000/top/playlist?cat=华语&order=hot'
+      'https://wyymusicapi.vercel.app/top/playlist?cat=华语&order=hot'
     ) // console.log(request.data.playlists) // 遍历出歌单id
     for (let i = 0; i < 3; i++) {
       // 用遍历出的id请求歌曲id

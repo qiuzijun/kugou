@@ -28,7 +28,7 @@ export default {
   },
   async beforeMount() {
     let musicMv = await this.axios.get(
-      'http://localhost:3000/mv/url?id=' + this.$route.query.id
+      'https://wyymusicapi.vercel.app/mv/url?id=' + this.$route.query.id
     )
     this.Url = musicMv.data.data.url
     if (musicMv.data.data.url == null) {
@@ -36,7 +36,7 @@ export default {
     }
     // console.log(musicMv)
     console.log(this.Url)
-    let mv = await this.axios.get('http://localhost:3000/mv/url?id=5436712')
+    let mv = await this.axios.get('https://wyymusicapi.vercel.app/mv/url?id=5436712')
     console.log(mv)
   }
 }

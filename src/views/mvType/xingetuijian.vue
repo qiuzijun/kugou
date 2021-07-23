@@ -33,7 +33,7 @@ export default {
     }
   },
   async beforeMount() {
-    let type = await this.axios.get('http://localhost:3000/mv/first?limit=20')
+    let type = await this.axios.get('https://wyymusicapi.vercel.app/mv/first?limit=20')
     for (let i = 0; i < type.data.data.length; i++) {
       this.xingeTjmv.push(type.data.data[i])
     }

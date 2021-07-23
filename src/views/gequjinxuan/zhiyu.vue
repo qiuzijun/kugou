@@ -62,7 +62,7 @@ export default {
     },
     async bofan(index) {
       let musicUrl = await this.axios.get(
-        'http://localhost:3000/song/url?id=' + index
+        'https://wyymusicapi.vercel.app/song/url?id=' + index
       )
       if (musicUrl.data.data[0].url == null) {
         alert('Vip音乐')
@@ -71,7 +71,7 @@ export default {
       this.$store.commit('setUrl', musicUrl.data.data[0].url)
 
       let musiclist = await this.axios.get(
-        'http://localhost:3000/song/detail?ids=' + index
+        'https://wyymusicapi.vercel.app/song/detail?ids=' + index
       )
       // console.log(require)
       if (musiclist.data.songs[0].al.picUrl == null) {
@@ -105,15 +105,15 @@ export default {
   },
   async beforeMount() {
     let result1 = await this.axios.get(
-      'http://localhost:3000/top/playlist?cat=治愈&order=hot'
+      'https://wyymusicapi.vercel.app/top/playlist?cat=治愈&order=hot'
     )
     let result2 = await this.axios.get(
-      'http://localhost:3000/playlist/detail?id=' + result1.data.playlists[0].id
+      'https://wyymusicapi.vercel.app/playlist/detail?id=' + result1.data.playlists[0].id
     )
     for (let i = 0; i < 9; i++) {
       // console.log(result2.data.privileges[i].id)
       let result3 = await this.axios.get(
-        'http://localhost:3000/song/detail?ids=' + result2.data.privileges[i].id
+        'https://wyymusicapi.vercel.app/song/detail?ids=' + result2.data.privileges[i].id
       )
       // console.log(result3.data.songs[0])
       this.resultLm.push(result3.data.songs[0])

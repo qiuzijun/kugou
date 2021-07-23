@@ -12,7 +12,7 @@ export default {
   },
   created() {
     this.axios
-      .get('http://localhost:3000/top/playlist')
+      .get('https://wyymusicapi.vercel.app/top/playlist')
       .then(require => {
         console.log(require)
       })

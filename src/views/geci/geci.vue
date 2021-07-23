@@ -98,7 +98,7 @@ export default {
   },
   async beforeMount() {
     let ge = await this.axios.get(
-      'http://localhost:3000/lyric?id=' + this.$route.query.id
+      'https://wyymusicapi.vercel.app/lyric?id=' + this.$route.query.id
     )
     var a = ge.data.lrc.lyric.split('[')
     a.shift(']')

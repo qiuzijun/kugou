@@ -8,7 +8,7 @@ export default {
   },
   async beforeMount() {
     let daintai = await this.axios
-      .get('http://localhost:3000/dj/personalize/recommend')
+      .get('https://wyymusicapi.vercel.app/dj/personalize/recommend')
       .then(require => {
         console.log(require)
       })

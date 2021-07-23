@@ -250,9 +250,6 @@ export default {
       this.$refs.MusicPlay.volume = parseFloat(newName / 100)
       // console.log(parseFloat(newName / 100))
     }
-  },
-  beforeMount() {
-    // console.log(this.musicList[0])
   }
 }
 </script>

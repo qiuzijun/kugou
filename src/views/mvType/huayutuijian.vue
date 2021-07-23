@@ -34,7 +34,7 @@ export default {
   },
   async beforeMount() {
     let type = await this.axios.get(
-      'http://localhost:3000/mv/first?limit=20&area=内地'
+      'https://wyymusicapi.vercel.app/mv/first?limit=20&area=内地'
     )
     console.log(type)
     for (let i = 0; i < type.data.data.length; i++) {
